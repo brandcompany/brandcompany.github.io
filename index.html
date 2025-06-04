@@ -228,6 +228,78 @@
                 transform: translateY(0);
             }
         }
+
+        @media (max-width: 640px) {
+            /* Modal content adjustments */
+            .portfolio-modal-content {
+                width: 95%; /* Slightly narrower for mobile */
+                max-width: 100%; /* Ensure it doesn't exceed viewport */
+                max-height: 90vh; /* Limit height to 90% of viewport height */
+                overflow-y: auto; /* Enable vertical scrolling if content overflows */
+                padding: 1rem; /* Reduce padding for smaller screens */
+                margin: 0.5rem; /* Add small margin to prevent edge sticking */
+            }
+
+            /* Modal heading */
+            .portfolio-modal-content h3 {
+                font-size: 1.25rem; /* Smaller heading for mobile */
+                margin-bottom: 0.75rem;
+            }
+
+            /* Modal paragraph text */
+            .portfolio-modal-content p {
+                font-size: 0.875rem; /* Smaller text for readability */
+                margin-bottom: 0.5rem;
+            }
+
+            /* Modal list */
+            .portfolio-modal-content ul {
+                font-size: 0.875rem; /* Smaller list items */
+                padding-left: 1rem;
+            }
+
+            /* Close button */
+            .portfolio-modal-content .close-modal {
+                width: 1.5rem; /* Smaller close button */
+                height: 1.5rem;
+                font-size: 1rem;
+            }
+
+            /* Carousel adjustments */
+            .carousel {
+                max-width: 100%; /* Ensure carousel fits within modal */
+                height: auto; /* Allow height to adjust dynamically */
+            }
+
+            .carousel-images img {
+                width: 100%; /* Full width for images */
+                height: auto; /* Maintain aspect ratio */
+                max-height: 200px; /* Limit image height to prevent overflow */
+                object-fit: contain; /* Ensure entire image is visible */
+            }
+
+            .carousel-btn {
+                padding: 0.25rem; /* Smaller buttons for mobile */
+                font-size: 1rem; /* Smaller arrows */
+            }
+
+            .carousel-btn.prev {
+                left: 0.25rem;
+            }
+
+            .carousel-btn.next {
+                right: 0.25rem;
+            }
+
+            /* Ensure project link is visible */
+            .portfolio-modal-content a {
+                display: block; /* Make link a block element for better clickability */
+                margin-top: 1rem; /* Add spacing above link */
+                font-size: 0.875rem; /* Smaller font for mobile */
+            }
+        }
+
+
     </style>
     <script src="https://www.google.com/recaptcha/api.js?render=6LdYwjIrAAAAACPyzN1eRhvUq8x1Pdji7eK2iuhd"></script>
 </head>
