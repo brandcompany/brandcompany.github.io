@@ -394,12 +394,12 @@
     </style>
 
     <!-- Герой секция -->
-    <section class="gradient-bg text-white pt-32 pb-20">
+    <section class="gradient-bg text-white pt-20 md:pt-32 pb-20"> <!-- Изменили pt-32 на pt-20 для мобильных и оставили pt-32 для десктопа -->
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Создам уникальные цифровые решения</h1>
-                    <p class="text-xl mb-8 opacity-90">Я разрабатываю современные веб-сайты, которые выделяют ваш бизнес среди конкурентов.</p>
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Создаем уникальные цифровые решения</h1> <!-- Уменьшили базовый размер текста для мобильных -->
+                    <p class="text-lg md:text-xl mb-8 opacity-90">Я разрабатываю современные веб-сайты, которые выделяют ваш бизнес среди конкурентов.</p> <!-- Аналогично для параграфа -->
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                         <a href="#kontakt" class="bg-white text-purple-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full text-center transition duration-300">Реализовать идею</a>
                         <a href="#services" class="border-2 border-white text-white hover:bg-white hover:bg-opacity-10 font-bold py-3 px-8 rounded-full text-center transition duration-300">Узнать больше</a>
@@ -449,7 +449,7 @@
     <section class="py-20 bg-gray-100" id="jop">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Мои работы</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Реализованные проекты</h2>
                 <div class="w-20 h-1 bg-purple-600 mx-auto"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1257,27 +1257,93 @@
     </style>
 
 
-    <!-- Контакты -->
-    <section class="py-20 gradient-bg text-white" id="kontakt">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row">
-                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+   <!-- Объединенная секция: Специальное предложение и Контакты -->
+    <section class="gradient-bg text-white py-12 md:py-20 px-4 w-full" id="kontakt">
+        <div class="container mx-auto">
+        <!-- Compact Discount Block with Larger Timer -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-4 md:p-6 mb-6 md:mb-8 transform transition-all duration-300 hover:shadow-xl w-full">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4" style="transform: scale(0.9); transform-origin: center;">
+                <!-- Content -->
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="discount-badge bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-bold">
+                            Скидка 64%
+                        </span>
+                        <span class="text-xs bg-yellow-400/90 text-gray-900 px-1.5 py-0.5 rounded font-medium">
+                            <i class="fas fa-bolt mr-1"></i> Ограниченное время
+                        </span>
+                    </div>
+                    
+                    <h3 class="text-xl md:text-2xl font-bold mb-1">🚀 Специальное предложение!</h3>
+                    <p class="text-base md:text-lg mb-3">Полный цикл разработки сайта</p>
+                    
+                    <!-- Price Section -->
+                    <div class="flex items-baseline gap-2 mb-4">
+                        <span class="text-3xl md:text-4xl font-bold text-yellow-300">9 000 ₽</span>
+                        <span class="price-strike text-lg text-gray-300"><s>25 000 ₽</s></span>
+                    </div>
+                    
+                    <!-- Features -->
+                    <div class="flex flex-wrap gap-1.5 mb-4">
+                        <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
+                            <i class="fas fa-palette mr-1.5"></i> UI/UX дизайн
+                        </div>
+                        <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
+                            <i class="fas fa-code mr-1.5"></i> Разработка
+                        </div>
+                        <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
+                            <i class="fas fa-server mr-1.5"></i> Домен + Хостинг
+                        </div>
+                        <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
+                            <i class="fas fa-chart-line mr-1.5"></i> SEO-оптимизация
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-5 text-center border border-white/20 pulse-animation min-w-[220px]">
+                    <p class="text-sm uppercase tracking-wider mb-4 animate-child">Предложение действует</p>
+                    <div class="flex gap-3 justify-center" id="countdown">
+                        <div class="flex flex-col items-center">
+                            <span class="text-4xl font-bold" id="days">00</span>
+                            <span class="text-sm">дня</span>
+                        </div>
+                        <span class="text-4xl font-bold">:</span>
+                        <div class="flex flex-col items-center">
+                            <span class="text-4xl font-bold" id="hours">00</span>
+                            <span class="text-sm">часов</span>
+                        </div>
+                        <span class="text-4xl font-bold">:</span>
+                        <div class="flex flex-col items-center">
+                            <span class="text-4xl font-bold" id="minutes">00</span>
+                            <span class="text-sm">минут</span>
+                        </div>
+                        <span class="text-4xl font-bold">:</span>
+                        <div class="flex flex-col items-center">
+                            <span class="text-4xl font-bold" id="seconds">00</span>
+                            <span class="text-sm">секунд</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-xs md:text-sm text-white/80 mt-3 text-center animate-pulse">
+                <i class="fas fa-exclamation-triangle mr-1"></i> Успейте оставить заявку, предложение ограничено!
+            </p>
+        </div>
+            <!-- Контакты и форма -->
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                <!-- Контактная информация -->
+                <div class="lg:w-1/2">
                     <h2 class="text-3xl md:text-4xl font-bold mb-6">Свяжитесь со мной</h2>
-                    <p class="text-lg mb-8 opacity-90">Готовы начать проект или есть вопросы? Напишите мне в Telegram, или оставте заявку и я свяжусь с вами в ближайшее время.</p>
+                    <p class="text-lg mb-8 opacity-90">Готовы начать проект или есть вопросы? Напишите мне в Telegram или оставьте заявку, и я свяжусь с вами в ближайшее время.</p>
                     <div class="space-y-6">
                         <div class="flex items-start">
-                            <div class="text-xl mr-4 mt-1">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
+                            <div class="text-xl mr-4 mt-1"><i class="fas fa-phone-alt"></i></div>
                             <div>
                                 <h4 class="font-bold mb-1">Телефон</h4>
-                                <p><a href="tel:+79220064233">+7 (922) 006-42-33 </a></p>
+                                <p><a href="tel:+79220064233">+7 (922) 006-42-33</a></p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="text-xl mr-4 mt-1">
-                                <i class="fas fa-envelope"></i>
-                            </div>
+                            <div class="text-xl mr-4 mt-1"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <h4 class="font-bold mb-1">Telegram</h4>
                                 <p><a href="https://t.me/brand_company_io">@brand_company_io</a></p>
@@ -1288,7 +1354,6 @@
                         <a href="https://vk.com/vk.brandcompany" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition">
                             <i class="fab fa-vk"></i>
                         </a>
-
                         <a href="https://t.me/brand_company_io" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition">
                             <i class="fab fa-telegram-plane"></i>
                         </a>
@@ -1297,6 +1362,7 @@
                         </a>
                     </div>
                 </div>
+                <!-- Форма -->
                 <div class="lg:w-1/2">
                     <form id="signup-form" class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 md:p-8">
                         <div class="mb-6">
@@ -1334,6 +1400,63 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Фиксируем дату окончания один раз при загрузке (2.5 дня от текущего момента)
+            const endDate = new Date(Date.now() + 2.5 * 24 * 60 * 60 * 1000);
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = endDate - now;
+
+                // Если время истекло, показываем нули и сообщение
+                if (diff <= 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    document.getElementById('countdown').innerHTML = '<p class="text-lg">Предложение истекло!</p>';
+                    return;
+                }
+
+                // Расчет оставшегося времени
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                // Обновление элементов на странице с ведущими нулями
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+
+            // Первоначальный вызов для немедленного отображения
+            updateCountdown();
+            // Обновление каждую секунду
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+
+    <style>
+        .pulse-animation {
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1); }
+            50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+        }
+
+        /* Увеличение отступа для мобильных устройств */
+        @media (max-width: 767px) {
+            .animate-child {
+                margin-bottom: 1.5rem; /* Увеличиваем отступ снизу на мобильных */
+            }
+        }
+    </style>
 
     <!-- Футер -->
     <footer class="bg-gray-900 text-white py-12">
