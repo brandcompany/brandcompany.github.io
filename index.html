@@ -116,7 +116,21 @@
         .float-animation {
             animation: float 6s ease-in-out infinite;
         }
-        
+
+        @media (max-width: 1024px) {
+            #aii-team #designAssistant .grid.lg\\:grid-cols-2 {
+                grid-template-columns: 1fr; /* Переключаем на одну колонку */
+            }
+            #aii-team #designAssistant .p-8 {
+                padding: 1rem; /* Уменьшаем отступы с 2rem до 1rem */
+            }
+            #aii-team .chat-messages {
+                height: auto; /* Делаем высоту адаптивной */
+                max-height: 40vh; /* Ограничиваем максимальную высоту */
+                overflow-y: auto; /* Добавляем прокрутку при необходимости */
+            }
+        }
+                    
     </style>
     <script src="https://www.google.com/recaptcha/api.js?render=6Lcqb1orAAAAADar8bV0KX5UEjTQluGarQmDqriS"></script>
 </head>
@@ -162,7 +176,7 @@
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Создаем цифровые продукты <span class="text-gradient">нового поколения</span></h1>
                     <p class="text-lg text-gray-600 mb-8">Мы разрабатываем современные веб-решения, которые помогают бизнесу расти в цифровую эпоху.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#contact" class="btn-primary text-center">Начать проект</a>
+                        <!-- <a href="#contact" class="btn-primary text-center">Начать проект</a> -->
                         <a href="#services" class="btn-secondary text-center">Узнать больше</a>
                     </div>
                 </div>
@@ -305,7 +319,7 @@
     </section>
 
     <!-- нейросотрудники-->
-    <section class="py-20 bg-white" id="ai-team">
+    <section class="py-20 bg-white" id="aii-team">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <p class="text-sm font-semibold text-indigo-600 mb-2">НАШИ AI АССИСТЕНТЫ</p>
@@ -364,259 +378,278 @@
                 Я пока не подключён! Мой разработчик ищет сервер для моего обучения — видимо, я слишком умён для обычного оборудования 😉
             </div>
 
-            <div id="aiContainer" class="relative">
-                <!-- Дизайн-Ассистент -->
-                <div id="designAssistant" class="card absolute inset-0 transition-opacity duration-500 opacity-100">
-                    <div class="grid lg:grid-cols-2 gap-8">
-                        <div class="p-8">
-                            <div class="flex items-start mb-6">
-                                <div class="feature-icon">
-                                    <i class="fas fa-paint-brush"></i>
-                                </div>
-                                <div class="ml-6 flex-1">
-                                    <h3 class="text-xl font-bold mb-2">Дизайн-Ассистент</h3>
-                                    <p class="text-gray-600">AI для создания креативных концепций</p>
-                                </div>
+            <div id="aiContainer" class="relative min-h-[600px] max-w-full mx-auto">
+            <!-- Дизайн-Ассистент -->
+            <div id="designAssistant" class="card transition-opacity duration-500 opacity-100" data-assistant="design">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-full">
+                    <div class="p-4 lg:p-8">
+                        <div class="flex items-start mb-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-paint-brush"></i>
                             </div>
-                            <div class="bg-white p-4">
-                                <div class="chat-messages h-39 overflow-y-auto mb-4" id="designChatMessages">
-                                    <div class="bot-message">
-                                        <div class="text-sm text-gray-500 mb-2">Креативный Генератор</div>
-                                        <div class="bg-white p-3 rounded-lg shadow-sm">
-                                            Готов создавать уникальные дизайны. Опишите вашу концепцию
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-2">
-                                    <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Опишите ваш дизайн...">
-                                    <button Vansbutton class="ai-action-btn btn-primary" data-chat-id="designChatMessages">Создать</button>
-                                </div>
+                            <div class="ml-6 flex-1">
+                                <h3 class="text-xl font-bold mb-2">Дизайн-Ассистент</h3>
+                                <p class="text-gray-600">AI для создания креативных концепций</p>
                             </div>
                         </div>
-                        <div class="p-8">
-                            <h3 class="text-xl font-bold mb-6">Возможности Дизайн-Ассистента</h3>
-                            <div class="grid gap-4">
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-palette"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Генерация стиля</h4>
-                                        <p class="text-gray-600">Автоматический подбор цветовых схем и типографики</p>
+                        <div class="bg-white rounded-lg p-4 shadow-sm">
+                            <div class="chat-messages h-auto max-h-[40vh] overflow-y-auto mb-4" id="designChatMessages">
+                                <div class="bot-message">
+                                    <div class="text-sm text-gray-500 mb-2">Креативный Генератор</div>
+                                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                                        Готов создавать уникальные дизайны. Опишите вашу концепцию
                                     </div>
                                 </div>
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-vector-square"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Векторная графика</h4>
-                                        <p class="text-gray-600">Создание SVG-графики по текстовому описанию</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-magic"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Авто-макетирование</h4>
-                                        <p class="text-gray-600">Адаптивная верстка с учетом трендов дизайна</p>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Опишите ваш дизайн...">
+                                <button class="ai-action-btn btn-primary px-4 py-3 rounded-lg bg-indigo-500 text-white hover:bg-indigo-600" data-chat-id="designChatMessages">Создать</button>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Таро-Ассистент -->
-                <div id="tarotAssistant" class="card absolute inset-0 transition-opacity duration-500 opacity-0 hidden">
-                    <div class="grid lg:grid-cols-2 gap-8">
-                        <div class="p-8">
-                            <div class="flex items-start mb-6">
+                    <div class="p-4 lg:p-8">
+                        <h3 class="text-xl font-bold mb-6">Возможности Дизайн-Ассистента</h3>
+                        <div class="grid gap-4">
+                            <div class="flex items-start">
                                 <div class="feature-icon">
-                                    <i class="fas fa-layer-group"></i>
+                                    <i class="fas fa-palette"></i>
                                 </div>
-                                <div class="ml-6 flex-1">
-                                    <h3 class="text-xl font-bold mb-2">Таро-Ассистент</h3>
-                                    <p class="text-gray-600">AI с обучением на 10,000+ раскладов</p>
-                                </div>
-                            </div>
-                            <div class="bg-gray-50 rounded-lg p-4">
-                                <div class="chat-messages h-48 overflow-y-auto mb-4" id="tarotChatMessages">
-                                    <div class="bot-message">
-                                        <div class="text-sm text-gray-500 mb-2">Цифровой Оракул</div>
-                                        <div class="bg-white p-3 rounded-lg shadow-sm">
-                                            Готов раскрыть тайны вселенной. Задайте вопрос или выберите тип расклада
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-2">
-                                    <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Введите ваш вопрос...">
-                                    <button class="ai-action-btn btn-primary" data-chat-id="tarotChatMessages">Отправить</button>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Генерация стиля</h4>
+                                    <p class="text-gray-600">Автоматический подбор цветовых схем и типографики</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="p-8">
-                            <h3 class="text-xl font-bold mb-6">Возможности Таро-Ассистента</h3>
-                            <div class="grid gap-4">
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-layer-group"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">78 Арканов</h4>
-                                        <p class="text-gray-600">Полная колода с историческими трактовками и AI-интерпретациями</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-people-arrows"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Паттерны отношений</h4>
-                                        <p class="text-gray-600">Анализ совместимости и прогноз развития отношений</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-dna"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Нейро-интуиция</h4>
-                                        <p class="text-gray-600">Гибридная модель: машинное обучение + эзотерические алгоритмы</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HR-Ассистент -->
-                <div id="hrAssistant" class="card absolute inset-0 transition-opacity duration-500 opacity-0 hidden">
-                    <div class="grid lg:grid-cols-2 gap-8">
-                        <div class="p-8">
-                            <div class="flex items-start mb-6">
+                            <div class="flex items-start">
                                 <div class="feature-icon">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-vector-square"></i>
                                 </div>
-                                <div class="ml-6 flex-1">
-                                    <h3 class="text-xl font-bold mb-2">HR-Ассистент</h3>
-                                    <p class="text-gray-600">AI для управления персоналом и подбора кадров</p>
-                                </div>
-                            </div>
-                            <div class="bg-gray-50 rounded-lg p-4">
-                                <div class="chat-messages h-48 overflow-y-auto mb-4" id="hrChatMessages">
-                                    <div class="bot-message">
-                                        <div class="text-sm text-gray-500 mb-2">Ваш HR-помощник</div>
-                                        <div class="bg-white p-3 rounded-lg shadow-sm">
-                                            Готов помочь с подбором сотрудников. Опишите вакансию или загрузите резюме
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-2">
-                                    <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Опишите вакансию...">
-                                    <button class="ai-action-btn btn-primary" data-chat-id="hrChatMessages">Найти</button>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Векторная графика</h4>
+                                    <p class="text-gray-600">Создание SVG-графики по текстовому описанию</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="p-8">
-                            <h3 class="text-xl font-bold mb-6">Возможности HR-Ассистента</h3>
-                            <div class="grid gap-4">
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-file-alt"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Анализ резюме</h4>
-                                        <p class="text-gray-600">Оценка навыков и соответствия кандидатов</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-calendar-check"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Планирование собеседований</h4>
-                                        <p class="text-gray-600">Автоматическое создание расписания и уведомлений</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-users-cog"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">HR-аналитика</h4>
-                                        <p class="text-gray-600">Прогноз текучести кадров и рекомендации</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Коуч-Ассистент -->
-                <div id="coachAssistant" class="card absolute inset-0 transition-opacity duration-500 opacity-0 hidden">
-                    <div class="grid lg:grid-cols-2 gap-8">
-                        <div class="p-8">
-                            <div class="flex items-start mb-6">
+                            <div class="flex items-start">
                                 <div class="feature-icon">
-                                    <i class="fas fa-lightbulb"></i>
+                                    <i class="fas fa-magic"></i>
                                 </div>
-                                <div class="ml-6 flex-1">
-                                    <h3 class="text-xl font-bold mb-2">Коуч-Ассистент</h3>
-                                    <p class="text-gray-600">AI для личностного роста и мотивации</p>
-                                </div>
-                            </div>
-                            <div class="bg-gray-50 rounded-lg p-4">
-                                <div class="chat-messages h-48 overflow-y-auto mb-4" id="coachChatMessages">
-                                    <div class="bot-message">
-                                        <div class="text-sm text-gray-500 mb-2">Ваш личный коуч</div>
-                                        <div class="bg-white p-3 rounded-lg shadow-sm">
-                                            Давайте достигнем ваших целей! Назови цель или задай вопрос
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex gap-2">
-                                    <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Опишите вашу цель...">
-                                    <button class="ai-action-btn btn-primary" data-chat-id="coachChatMessages">Начать</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-8">
-                            <h3 class="text-xl font-bold mb-6">Возможности Коуч-Ассистента</h3>
-                            <div class="grid gap-4">
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-bullseye"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Постановка целей</h4>
-                                        <p class="text-gray-600">Помощь в формулировке SMART-целей</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-heart"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Мотивация</h4>
-                                        <p class="text-gray-600">Персонализированные советы для поддержания мотивации</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="feature-icon">
-                                        <i class="fas fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="text-lg font-semibold mb-2">Развитие навыков</h4>
-                                        <p class="text-gray-600">Упражнения для улучшения коммуникации и лидерства</p>
-                                    </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Авто-макетирование</h4>
+                                    <p class="text-gray-600">Адаптивная верстка с учетом трендов дизайна</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Таро-Ассистент -->
+            <div id="tarotAssistant" class="card transition-opacity duration-500 opacity-0 hidden" data-assistant="tarot">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-full">
+                    <div class="p-4 lg:p-8">
+                        <div class="flex items-start mb-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <h3 class="text-xl font-bold mb-2">Таро-Ассистент</h3>
+                                <p class="text-gray-600">AI с обучением на 10,000+ раскладов</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 shadow-sm">
+                            <div class="chat-messages h-auto max-h-[40vh] overflow-y-auto mb-4" id="tarotChatMessages">
+                                <div class="bot-message">
+                                    <div class="text-sm text-gray-500 mb-2">Цифровой Оракул</div>
+                                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                                        Готов раскрыть тайны вселенной. Задайте вопрос или выберите тип расклада
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Введите ваш вопрос...">
+                                <button class="ai-action-btn btn-primary px-4 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" data-chat-id="tarotChatMessages">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 lg:p-8">
+                        <h3 class="text-xl font-bold mb-6">Возможности Таро-Ассистента</h3>
+                        <div class="grid gap-4">
+                            <div class="flex items-start">
+                                <div class="feature-icon">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">78 Арканов</h4>
+                                    <p class="text-gray-600">Полная колода с историческими трактовками и AI-интерпретациями</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="feature-icon">
+                                    <i class="fas fa-people-arrows"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Паттерны отношений</h4>
+                                    <p class="text-gray-600">Анализ совместимости и прогноз развития отношений</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="feature-icon">
+                                    <i class="fas fa-dna"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Нейро-интуиция</h4>
+                                    <p class="text-gray-600">Гибридная модель: машинное обучение + эзотерические алгоритмы</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HR-Ассистент -->
+            <div id="hrAssistant" class="card transition-opacity duration-500 opacity-0 hidden" data-assistant="hr">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-full">
+                    <div class="p-4 lg:p-8">
+                        <div class="flex items-start mb-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <h3 class="text-xl font-bold mb-2">HR-Ассистент</h3>
+                                <p class="text-gray-600">AI для управления персоналом и подбора кадров</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 shadow-sm">
+                            <div class="chat-messages h-auto max-h-[40vh] overflow-y-auto mb-4" id="hrChatMessages">
+                                <div class="bot-message">
+                                    <div class="text-sm text-gray-500 mb-2">Ваш HR-помощник</div>
+                                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                                        Готов помочь с подбором сотрудников. Опишите вакансию или загрузите резюме
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Опишите вакансию...">
+                                <button class="ai-action-btn btn-primary px-4 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" data-chat-id="hrChatMessages">Найти</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 lg:p-8">
+                        <h3 class="text-xl font-bold mb-6">Возможности HR-Ассистента</h3>
+                        <div class="grid gap-4">
+                            <div class="flex items-start">
+                                <div class="feature-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Анализ резюме</h4>
+                                    <p class="text-gray-600">Оценка навыков и соответствия кандидатов</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="feature-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Планирование собеседований</h4>
+                                    <p class="text-gray-600">Автоматическое создание расписания и уведомлений</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="feature-icon">
+                                    <i class="fas fa-users-cog"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">HR-аналитика</h4>
+                                    <p class="text-gray-600">Прогноз текучести кадров и рекомендации</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Коуч-Ассистент -->
+            <div id="coachAssistant" class="card transition-opacity duration-500 opacity-0 hidden" data-assistant="coach">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-full">
+                    <div class="p-4 lg:p-8">
+                        <div class="flex items-start mb-6">
+                            <div class="feature-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="ml-6 flex-1">
+                                <h3 class="text-xl font-bold mb-2">Коуч-Ассистент</h3>
+                                <p class="text-gray-600">AI для личностного роста и мотивации</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 shadow-sm">
+                            <div class="chat-messages h-auto max-h-[40vh] overflow-y-auto mb-4" id="coachChatMessages">
+                                <div class="bot-message">
+                                    <div class="text-sm text-gray-500 mb-2">Ваш личный коуч</div>
+                                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                                        Давайте достигнем ваших целей! Назови цель или задай вопрос
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Опишите вашу цель...">
+                                <button class="ai-action-btn btn-primary px-4 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700" data-chat-id="coachChatMessages">Начать</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 lg:p-8">
+                        <h3 class="text-xl font-bold mb-6">Возможности Коуч-Ассистента</h3>
+                        <div class="grid gap-4">
+                            <div class="flex items-start">
+                                <div class="feature-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Постановка целей</h4>
+                                    <p class="text-gray-600">Помощь в формулировке SMART-целей</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="feature-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Мотивация</h4>
+                                    <p class="text-gray-600">Персонализированные советы для поддержания мотивации</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="feature-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold mb-2">Развитие навыков</h4>
+                                    <p class="text-gray-600">Упражнения для улучшения коммуникации и лидерства</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+        #aiContainer .card {
+            display: none;
+        }
+        #aiContainer .card.opacity-100:not(.hidden) {
+            display: block;
+        }
+        @media (max-width: 1024px) {
+            #aiContainer {
+                min-height: 600px;
+            }
+            #aiContainer .chat-messages {
+                height: auto;
+                max-height: 40vh;
+                overflow-y: auto;
+            }
+        }
+        </style>
         </div>
     </section>
 
@@ -731,74 +764,73 @@
     <section class="py-20 bg-gradient-light" id="kontakt">
         <div class="container mx-auto px-6">
             <!-- Special Offer -->
-   
- <div class="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-4 md:p-6 mb-6 md:mb-8 transform transition-all duration-300 hover:shadow-xl w-full">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4" style="transform: scale(0.9); transform-origin: center;">
-                <!-- Content -->
-                <div class="flex-1">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="discount-badge bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-bold">
-                            Скидка 64%
-                        </span>
-                        <span class="text-xs bg-yellow-400/90 text-gray-900 px-1.5 py-0.5 rounded font-medium">
-                            <i class="fas fa-bolt mr-1"></i> Ограниченное время
-                        </span>
+            <div class="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-4 md:p-6 mb-6 md:mb-8 transform transition-all duration-300 hover:shadow-xl w-full">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4" style="transform: scale(0.9); transform-origin: center;">
+                    <!-- Content -->
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="discount-badge bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-bold">
+                                Скидка 64%
+                            </span>
+                            <span class="text-xs bg-yellow-400/90 text-gray-900 px-1.5 py-0.5 rounded font-medium">
+                                <i class="fas fa-bolt mr-1"></i> Ограниченное время
+                            </span>
+                        </div>
+                        
+                        <h3 class="text-xl md:text-2xl font-bold mb-1">🚀 Специальное предложение!</h3>
+                        <p class="text-base md:text-lg mb-3">Полный цикл разработки сайта</p>
+                        
+                        <!-- Price Section -->
+                        <div class="flex items-baseline gap-2 mb-4">
+                            <span class="text-3xl md:text-4xl font-bold text-gradient">9 000 ₽</span>
+                            <span class="price-strike text-lg text-gray-300"><s>25 000 ₽</s></span>
+                        </div>
+                        
+                        <!-- Features -->
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
+                                <i class="fas fa-palette mr-1.5"></i> UI/UX дизайн
+                            </div>
+                            <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
+                                <i class="fas fa-code mr-1.5"></i> Разработка
+                            </div>
+                            <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
+                                <i class="fas fa-server mr-1.5"></i> Домен + Хостинг
+                            </div>
+                            <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
+                                <i class="fas fa-chart-line mr-1.5"></i> SEO-оптимизация
+                            </div>
+                        </div>
                     </div>
-                    
-                    <h3 class="text-xl md:text-2xl font-bold mb-1">🚀 Специальное предложение!</h3>
-                    <p class="text-base md:text-lg mb-3">Полный цикл разработки сайта</p>
-                    
-                    <!-- Price Section -->
-                    <div class="flex items-baseline gap-2 mb-4">
-                        <span class="text-3xl md:text-4xl font-bold text-gradient">9 000 ₽</span>
-                        <span class="price-strike text-lg text-gray-300"><s>25 000 ₽</s></span>
-                    </div>
-                    
-                    <!-- Features -->
-                    <div class="flex flex-wrap gap-1.5 mb-4">
-                        <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
-                            <i class="fas fa-palette mr-1.5"></i> UI/UX дизайн
-                        </div>
-                        <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
-                            <i class="fas fa-code mr-1.5"></i> Разработка
-                        </div>
-                        <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
-                            <i class="fas fa-server mr-1.5"></i> Домен + Хостинг
-                        </div>
-                        <div class="flex items-center bg-white/20 px-2 py-1 rounded-full text-xs md:text-sm">
-                            <i class="fas fa-chart-line mr-1.5"></i> SEO-оптимизация
+                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-5 text-center border border-white/20 pulse-animation min-w-[220px]">
+                        <p class="text-sm uppercase tracking-wider mb-4 animate-child">Предложение действует</p>
+                        <div class="flex gap-3 justify-center" id="countdown">
+                            <div class="flex flex-col items-center">
+                                <span class="text-4xl font-bold" id="days">00</span>
+                                <span class="text-sm">дня</span>
+                            </div>
+                            <span class="text-4xl font-bold">:</span>
+                            <div class="flex flex-col items-center">
+                                <span class="text-4xl font-bold" id="hours">00</span>
+                                <span class="text-sm">часов</span>
+                            </div>
+                            <span class="text-4xl font-bold">:</span>
+                            <div class="flex flex-col items-center">
+                                <span class="text-4xl font-bold" id="minutes">00</span>
+                                <span class="text-sm">минут</span>
+                            </div>
+                            <span class="text-4xl font-bold">:</span>
+                            <div class="flex flex-col items-center">
+                                <span class="text-4xl font-bold" id="seconds">00</span>
+                                <span class="text-sm">секунд</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-5 text-center border border-white/20 pulse-animation min-w-[220px]">
-                    <p class="text-sm uppercase tracking-wider mb-4 animate-child">Предложение действует</p>
-                    <div class="flex gap-3 justify-center" id="countdown">
-                        <div class="flex flex-col items-center">
-                            <span class="text-4xl font-bold" id="days">00</span>
-                            <span class="text-sm">дня</span>
-                        </div>
-                        <span class="text-4xl font-bold">:</span>
-                        <div class="flex flex-col items-center">
-                            <span class="text-4xl font-bold" id="hours">00</span>
-                            <span class="text-sm">часов</span>
-                        </div>
-                        <span class="text-4xl font-bold">:</span>
-                        <div class="flex flex-col items-center">
-                            <span class="text-4xl font-bold" id="minutes">00</span>
-                            <span class="text-sm">минут</span>
-                        </div>
-                        <span class="text-4xl font-bold">:</span>
-                        <div class="flex flex-col items-center">
-                            <span class="text-4xl font-bold" id="seconds">00</span>
-                            <span class="text-sm">секунд</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- <p class="text-xs md:text-sm text-white/80 mt-3 text-center animate-pulse">
+                    <i class="fas fa-exclamation-triangle mr-1"></i> Успейте оставить заявку, предложение ограничено!
+                </p> -->
             </div>
-            <!-- <p class="text-xs md:text-sm text-white/80 mt-3 text-center animate-pulse">
-                <i class="fas fa-exclamation-triangle mr-1"></i> Успейте оставить заявку, предложение ограничено!
-            </p> -->
-        </div>
             <!-- Contact and Form -->
             <div class="grid lg:grid-cols-2 gap-8">
                 <!-- Contact Information -->
