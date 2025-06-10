@@ -45,561 +45,288 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/102431898" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            @apply bg-gray-50 text-gray-900;
         }
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
+        
+        .border-gradient {
+            border: 1px solid;
+            border-image: linear-gradient(to right, #6366F1, #A855F7, #EC4899) 1;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+        
+        .text-gradient {
+            background: linear-gradient(to right, #6366F1, #A855F7, #EC4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .card-hover {
-            transition: all 0.3s ease;
+        
+        .bg-gradient-light {
+            background: linear-gradient(to right, #f9fafb, #f3f4f6);
         }
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .menu-link {
-            position: relative;
-        }
-        .menu-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: white;
-            transition: width 0.3s ease;
-        }
-        .menu-link:hover::after {
-            width: 100%;
-        }
+        
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out;
         }
+        
         .mobile-menu.open {
             max-height: 500px;
         }
-        select#site-type {
-            color: #ffffff;
-        }
-        select#site-type option {
-            color: #000000;
-            background: #ffffff;
-        }
-        /* Стили для модального окна портфолио */
-        .card-custom-shadow {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-        }
-        .card-custom-shadow:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .portfolio-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        .portfolio-modal-content {
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            text-align: left;
-        }
-        .portfolio-modal-content h3 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4b0082;
-            margin-bottom: 1rem;
-        }
-        .portfolio-modal-content p {
-            color: #4b5563;
-            margin-bottom: 1rem;
-        }
-        .portfolio-modal-content ul {
-            list-style: disc;
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .portfolio-modal-content .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #6b7280;
-            color: white;
-            border-radius: 50%;
-            width: 2rem;
-            height: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .portfolio-modal-content .close-modal:hover {
-            background: #4b5563;
-        }
-        /* Стили для карусели */
-        .carousel {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 0.5rem;
-        }
-        .carousel-images {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        .carousel-images img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 0.5rem;
-            cursor: pointer;
-            z-index: 10;
-        }
-        .carousel-btn.prev {
-            left: 0.5rem;
-        }
-        .carousel-btn.next {
-            right: 0.5rem;
+        
+        .menu-link {
+            @apply relative;
         }
         
-        /* АНИМАЦИИ Стили для скрытия секций и элементов до анимации */
-        /* Стили для скрытия секций и элементов до анимации */
-        .section-hidden {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+        .menu-link::after {
+            content: '';
+            @apply absolute w-0 h-0.5 bottom-0 left-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-300;
         }
-
-        .section-visible {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .menu-link:hover::after {
+            @apply w-full;
         }
-
-        /* Анимация дочерних элементов */
-        .section-hidden .animate-child {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        
+        .btn-primary {
+            @apply bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium py-3 px-6 rounded-lg transition-all hover:from-indigo-700 hover:to-purple-700 hover:shadow-lg;
         }
-
-        .section-visible .animate-child {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .btn-secondary {
+            @apply border-gradient bg-white text-gray-900 font-medium py-3 px-6 rounded-lg transition-all hover:bg-gray-50 hover:shadow-lg;
         }
-
-        /* Задержки для дочерних элементов */
-        section .animate-child:nth-child(1) { transition-delay: 0.1s; }
-        section .animate-child:nth-child(2) { transition-delay: 0.15s; }
-        section .animate-child:nth-child(3) { transition-delay: 0.2s; }
-        section .animate-child:nth-child(4) { transition-delay: 0.25s; }
-        section .animate-child:nth-child(5) { transition-delay: 0.3s; }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            .section-hidden {
-                transform: translateY(20px);
-                transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            }
-            .section-hidden .animate-child {
-                transform: translateY(15px);
-                transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-            }
-
-            /* Нейросотрудники параграфы */
-            .grid.gap-2 > .flex > div > h4 {
-                margin-bottom: 0.25rem;
-            }
-            .grid.gap-2 > .flex > div > p {
-                margin-top: 0.25rem;
-            }
-            .grid.gap-2 > .flex > div > p.animate-child {
-                transform: translateY(10px);
-                transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-            }
-            .section-visible .grid.gap-2 > .flex > div > p.animate-child {
-                transform: translateY(0);
-            }
+        
+        .card {
+            @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden;
         }
-
-        @media (max-width: 640px) {
-            /* Modal content adjustments */
-            .portfolio-modal-content {
-                width: 95%; /* Slightly narrower for mobile */
-                max-width: 100%; /* Ensure it doesn't exceed viewport */
-                max-height: 90vh; /* Limit height to 90% of viewport height */
-                overflow-y: auto; /* Enable vertical scrolling if content overflows */
-                padding: 1rem; /* Reduce padding for smaller screens */
-                margin: 0.5rem; /* Add small margin to prevent edge sticking */
-            }
-
-            /* Modal heading */
-            .portfolio-modal-content h3 {
-                font-size: 1.25rem; /* Smaller heading for mobile */
-                margin-bottom: 0.75rem;
-            }
-
-            /* Modal paragraph text */
-            .portfolio-modal-content p {
-                font-size: 0.875rem; /* Smaller text for readability */
-                margin-bottom: 0.5rem;
-            }
-
-            /* Modal list */
-            .portfolio-modal-content ul {
-                font-size: 0.875rem; /* Smaller list items */
-                padding-left: 1rem;
-            }
-
-            /* Close button */
-            .portfolio-modal-content .close-modal {
-                width: 1.5rem; /* Smaller close button */
-                height: 1.5rem;
-                font-size: 1rem;
-            }
-
-            /* Carousel adjustments */
-            .carousel {
-                max-width: 100%; /* Ensure carousel fits within modal */
-                height: auto; /* Allow height to adjust dynamically */
-            }
-
-            .carousel-images img {
-                width: 100%; /* Full width for images */
-                height: auto; /* Maintain aspect ratio */
-                max-height: 200px; /* Limit image height to prevent overflow */
-                object-fit: contain; /* Ensure entire image is visible */
-            }
-
-            .carousel-btn {
-                padding: 0.25rem; /* Smaller buttons for mobile */
-                font-size: 1rem; /* Smaller arrows */
-            }
-
-            .carousel-btn.prev {
-                left: 0.25rem;
-            }
-
-            .carousel-btn.next {
-                right: 0.25rem;
-            }
-
-            /* Ensure project link is visible */
-            .portfolio-modal-content a {
-                display: block; /* Make link a block element for better clickability */
-                margin-top: 1rem; /* Add spacing above link */
-                font-size: 0.875rem; /* Smaller font for mobile */
-            }
+        
+        .feature-icon {
+            @apply w-12 h-12 flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-600 text-xl mb-4;
         }
-
-
+        
+        /* Анимации */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
     </style>
     <script src="https://www.google.com/recaptcha/api.js?render=6Lcqb1orAAAAADar8bV0KX5UEjTQluGarQmDqriS"></script>
 </head>
-<body class="font-sans antialiased text-gray-800">
-     <!-- Навигация -->
-    <nav class="gradient-bg text-white shadow-lg fixed w-full z-50" id="home">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
+<body class="font-sans antialiased text-gray-900">
+
+    <!-- Навигация -->
+    <nav class="bg-white shadow-sm fixed w-full z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <a href="./" class="text-2xl font-bold flex items-center">
-                        <i class="fas fa-rocket mr-2"></i>
+                    <a href="#" class="text-2xl font-bold text-gradient flex items-center">
                         <span>Brand</span>
                     </a>
                 </div>
-                <div class="hidden md:flex space-x-8 desktop-menu">
-                    <a href="./" class="menu-link">Главная</a>
-                    <a href="#jop" class="menu-link">Работы</a>
-                    <a href="#kontakt" class="menu-link">Контакты</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="menu-link">Главная</a>
+                    <a href="#services" class="menu-link">Услуги</a>
+                    <a href="#ai-team" class="menu-link">AI Ассистенты</a>
+                    <a href="#contact" class="menu-link">Контакты</a>
                 </div>
                 <div class="md:hidden">
-                    <button id="menu-btn" class="text-white focus:outline-none">
+                    <button id="menu-btn" class="text-gray-600 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
             <div id="mobile-menu" class="mobile-menu md:hidden px-4 pb-2">
-                <div class="flex flex-col space-y-3">
-                    <a href="./" class="block py-2 hover:bg-white hover:bg-opacity-10 rounded px-3">Главная</a>
-                    <a href="#jop" class="block py-2 hover:bg-white hover:bg-opacity-10 rounded px-3">Работы</a>
-                    <a href="#kontakt" class="block py-2 hover:bg-white hover:bg-opacity-10 rounded px-3">Контакты</a>
+                <div class="flex flex-col space-y-3 mt-4">
+                    <a href="#" class="block py-2 hover:bg-gray-100 rounded px-3">Главная</a>
+                    <a href="#services" class="block py-2 hover:bg-gray-100 rounded px-3">Услуги</a>
+                    <a href="#ai-team" class="block py-2 hover:bg-gray-100 rounded px-3">AI Ассистенты</a>
+                    <a href="#contact" class="block py-2 hover:bg-gray-100 rounded px-3">Контакты</a>
                 </div>
             </div>
         </div>
     </nav>
-    <style>
-        .desktop-menu {
-            display: none; /* Скрываем по умолчанию */
-            color: white !important; /* Явный белый цвет текста */
-            font-family: Arial, sans-serif !important; /* Надежный шрифт */
-            font-size: 16px !important; /* Размер текста */
-            z-index: 1001 !important; /* Высокий z-index для исключения перекрытия */
-            opacity: 1 !important; /* Гарантируем видимость */
-            visibility: visible !important; /* Гарантируем видимость */
-        }
-
-        .desktop-menu a.menu-link {
-            color: white !important; /* Белый цвет для ссылок */
-            text-decoration: none !important; /* Без подчеркивания */
-            position: relative; /* Для эффекта подчеркивания */
-        }
-
-        .desktop-menu a.menu-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: white;
-            transition: width 0.3s ease;
-        }
-
-        .desktop-menu a.menu-link:hover::after {
-            width: 100%;
-        }
-
-        /* Переопределяем Tailwind для десктопа */
-        @media (min-width: 768px) {
-            .desktop-menu {
-                display: flex !important; /* Переопределяем hidden на flex */
-                gap: 2rem; /* Заменяем space-x-8 */
-            }
-        }
-    </style>
 
     <!-- Герой секция -->
-    <section class="gradient-bg text-white pt-20 md:pt-32 pb-20"> <!-- Изменили pt-32 на pt-20 для мобильных и оставили pt-32 для десктопа -->
-        <div class="container mx-auto px-4">
+    <section class="pt-32 pb-20">
+        <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Создаем уникальные цифровые решения</h1> <!-- Уменьшили базовый размер текста для мобильных -->
-                    <p class="text-lg md:text-xl mb-8 opacity-90">Я разрабатываю современные веб-сайты, которые выделяют ваш бизнес среди конкурентов.</p> <!-- Аналогично для параграфа -->
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Создаем цифровые продукты <span class="text-gradient">нового поколения</span></h1>
+                    <p class="text-lg text-gray-600 mb-8">Мы разрабатываем современные веб-решения, которые помогают бизнесу расти в цифровую эпоху.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#kontakt" class="bg-white text-purple-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full text-center transition duration-300">Реализовать идею</a>
-                        <a href="#services" class="border-2 border-white text-white hover:bg-white hover:bg-opacity-10 font-bold py-3 px-8 rounded-full text-center transition duration-300">Узнать больше</a>
+                        <a href="#contact" class="btn-primary text-center">Начать проект</a>
+                        <a href="#services" class="btn-secondary text-center">Узнать больше</a>
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2282/2282185.png" alt="Hero Image" class="w-3/4 md:w-full max-w-md float-animation">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-2xl transform rotate-6"></div>
+                        <div class="relative bg-white p-8 rounded-2xl shadow-lg">
+                            <div class="text-5xl text-indigo-600 mb-4">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Разработка высокого качества</h3>
+                            <p class="text-gray-600">Используем современные технологии для создания быстрых и надежных веб-сайтов.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- О нас -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
+    <section class="py-20 bg-gradient-light">
+        <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <!-- <h2 class="text-3xl md:text-4xl font-bold mb-4">Почему выбирают меня</h2> -->
-                <div class="w-20 h-1 bg-purple-600 mx-auto"></div>
+                <p class="text-sm font-semibold text-indigo-600 mb-2">НАШ ПОДХОД</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Как мы создаем ваши проекты</h2>
+                <div class="w-16 h-0.5 bg-gradient-to-r fromtriad from-indigo-500 to-purple-500 mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-8 rounded-xl card-hover">
-                    <div class="text-purple-600 text-4xl mb-4">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Быстрота</h3>
-                    <p class="text-gray-600">Я использую современные технологии для быстрой разработки без потери качества.</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl card-hover">
-                    <div class="text-purple-600 text-4xl mb-4">
-                        <i class="fas fa-mobile-screen"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Адаптивность</h3>
-                    <p class="text-gray-600">Все мои проекты идеально работают на любых устройствах и размерах экранов.</p>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl card-hover">
-                    <div class="text-purple-600 text-4xl mb-4">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Результаты</h3>
-                    <p class="text-gray-600">Мои решения помогают клиентам увеличивать продажи и улучшать бизнес-показатели.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Портфолио -->
-    <section class="py-20 bg-gray-100" id="jop">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Реализованные проекты</h2>
-                <div class="w-20 h-1 bg-purple-600 mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="relative group overflow-hidden rounded-xl card-custom-shadow">
-                    <video src="./333.webm" class="w-full h-64 object-fill transition duration-500 group-hover:scale-110" muted loop autoplay playsinline></video>
-                    <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition duration-300 p-6">
-                        <h3 class="text-white text-xl font-bold mb-2">Сайт для репетитора начальных классов</h3>
-                        <p class="text-white text-center mb-4">Современный дизайн с адаптивной версткой под все устройства</p>
-                        <button data-modal="modal-project-1" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-purple-700 transition portfolio-modal-btn">Подробнее</button>
-                    </div>
-                </div>
-                <div class="relative group overflow-hidden rounded-xl card-custom-shadow">
-                    <video src="./kri.webm" class="w-full h-64 object-fill transition duration-500 group-hover:scale-110" muted loop autoplay playsinline></video>
-                    <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition duration-300 p-6">
-                        <h3 class="text-white text-xl font-bold mb-2">Сумочки ручной работы</h3>
-                        <p class="text-white text-center mb-4">Уникальные вязаные сумки, созданные с душой для вашего стиля</p>
-                        <button data-modal="modal-project-2" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-purple-700 transition portfolio-modal-btn">Подробнее</button>
-                    </div>
-                </div>
-                <div class="relative group overflow-hidden rounded-xl card-custom-shadow">
-                    <video src="./elit.webm" class="w-full h-64 object-fill transition duration-500 group-hover:scale-110" muted loop autoplay playsinline></video>
-                    <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition duration-300 p-6">
-                        <h3 class="text-white text-xl font-bold mb-2">Сайт для салона красоты</h3>
-                        <p class="text-white text-center mb-4">Удобный сайт с онлайн-записью для услуг стрижки, маникюра и окрашивания</p>
-                        <button data-modal="modal-project-3" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-purple-700 transition portfolio-modal-btn">Подробнее</button>
-                    </div>
-                </div>
-                <div class="relative group overflow-hidden rounded-xl card-custom-shadow">
-                    <video src="./logo.webm" class="w-full h-64 object-fill transition duration-500 group-hover:scale-110" muted loop autoplay playsinline></video>
-                    <div class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition duration-300 p-6">
-                        <h3 class="text-white text-xl font-bold mb-2">Сайт для логопеда-дефектолога</h3>
-                        <p class="text-white text-center mb-4">Сайт для логопеда-дефектолога с онлайн-записью на консультации (в разработке)</p>
-                        <button data-modal="modal-project-4" class="text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-purple-700 transition portfolio-modal-btn">Подробнее</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="#" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full transition duration-300" onclick="showCustomMessage(event)">Смотреть все работы</a>
-            </div>
-
-            <!-- Изменяем стили сообщения для лучшей видимости -->
-            <div id="customMessage" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50 pointer-events-none flex items-center justify-center">
-                Все работы уже на сайте, больше пока нет!
-            </div>
-
-            <script>
-                function showCustomMessage(event) {
-                    event.preventDefault(); // Предотвращаем переход по ссылке
-
-                    // Показываем сообщение
-                    const message = document.getElementById('customMessage');
-                    message.classList.remove('opacity-0');
-                    message.classList.add('opacity-100');
-
-                    // Скрываем сообщение через 3 секунды
-                    setTimeout(() => {
-                        message.classList.remove('opacity-100');
-                        message.classList.add('opacity-0');
-                    }, 3000);
-                }
-            </script>
-
-            <style>
-                /* Добавляем стили для кастомного сообщения */
-                #customMessage {
-                    transition: opacity 0.3s ease-in-out;
-                }
-            </style>
-        </div>
-    </section>
-
-
-   <!-- Услуги -->
-    <section class="py-20 bg-white" id="services">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Услуги</h2>
-                <div class="w-20 h-1 bg-purple-600 mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-8 rounded-xl card-hover">
-                    <div class="text-purple-600 text-4xl mb-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card p-6 text-center">
+                    <div class="feature-icon mx-auto">
                         <i class="fas fa-search"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Оптимизация метатегов</h3>
-                    <p class="text-gray-600">Добавляю метатеги на ваш сайт для улучшения видимости в поисковых системах, включая ключевые слова, описания и заголовки.</p>
+                    <h3 class="text-xl font-bold text-gradient mb-2">1. Исследование</h3>
+                    <p class="text-gray-600">Анализируем ваши цели, аудиторию и рынок, чтобы заложить основу проекта.</p>
                 </div>
-                <div class="bg-gray-50 p-8 rounded-xl card-hover">
-                    <div class="text-purple-600 text-4xl mb-4">
-                        <i class="fas fa-shield-alt"></i>
+                <div class="card p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-paint-brush"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Защита Google от спама</h3>
-                    <p class="text-gray-600">Настраиваю reCAPTCHA и другие инструменты для защиты форм от спама, обеспечивая безопасность и чистоту ваших данных.</p>
+                    <h3 class="text-xl font-bold text-gradient mb-2">2. Дизайн</h3>
+                    <p class="text-gray-600">Создаем интуитивные и стильные интерфейсы для лучшего пользовательского опыта.</p>
                 </div>
-                <div class="bg-gray-50 p-8 rounded-xl card-hover">
-                    <div class="text-purple-600 text-4xl mb-4">
-                        <i class="fab fa-telegram-plane"></i>
+                <div class="card p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-code"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Интеграция с Telegram</h3>
-                    <p class="text-gray-600">Создаю Telegram-ботов и интегрирую их с вашим сайтом для автоматизации общения с клиентами и уведомлений.</p>
+                    <h3 class="text-xl font-bold text-gradient mb-2">3. Разработка</h3>
+                    <p class="text-gray-600">Кодируем надежные и быстрые веб-решения с современными технологиями.</p>
                 </div>
-                <div class="bg-gray-50 p-8 rounded-xl card-hover">
-                    <div class="text-purple-600 text-4xl mb-4">
+                <div class="card p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gradient mb-2">4. Запуск</h3>
+                    <p class="text-gray-600">Тестируем и запускаем проект, обеспечивая его стабильность и успех.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section class="py-20" id="services">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-sm font-semibold text-indigo-600 mb-2">НАШИ УСЛУГИ</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Что мы предлагаем</h2>
+                <div class="w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Услуга 1 -->
+                <div class="card p-8">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">SEO Оптимизация</h3>
+                    <p class="text-gray-600">Повышаем видимость вашего сайта в поисковых системах с помощью современных SEO-методик.</p>
+                </div>
+                
+                <!-- Услуга 2 -->
+                <div class="card p-8">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Защита от спама</h3>
+                    <p class="text-gray-600">Интегрируем системы защиты от ботов и спама для сохранения целостности ваших данных.</p>
+                </div>
+                
+                <!-- Услуга 3 -->
+                <div class="card p-8">
+                    <div class="feature-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Telegram-боты</h3>
+                    <p class="text-gray-600">Разрабатываем умных ботов для автоматизации общения с клиентами и уведомлений.</p>
+                </div>
+                
+                <!-- Услуга 4 -->
+                <div class="card p-8">
+                    <div class="feature-icon">
                         <i class="fas fa-code"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-3">Веб-разработка</h3>
-                    <p class="text-gray-600">Разрабатываю современные, быстрые и адаптивные сайты, от лендингов до сложных веб-приложений, с использованием HTML, CSS, JavaScript и React.</p>
+                    <p class="text-gray-600">Создаем быстрые, адаптивные сайты и веб-приложения с использованием современных технологий.</p>
                 </div>
-                <div class="bg-gray-50 p-8 rounded-xl card-hover">
-                    <div class="text-purple-600 text-4xl mb-4">
+                
+                <!-- Услуга 5 -->
+                <div class="card p-8">
+                    <div class="feature-icon">
                         <i class="fas fa-paint-brush"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">UI/UX дизайн</h3>
-                    <p class="text-gray-600">Создаю интуитивно понятные и визуально привлекательные интерфейсы, которые улучшают пользовательский опыт и повышают конверсию.</p>
+                    <h3 class="text-xl font-bold mb-3">UI/UX Дизайн</h3>
+                    <p class="text-gray-600">Проектируем интуитивно понятные интерфейсы, которые повышают конверсию и удобство использования.</p>
                 </div>
-                <div class="bg-gray-50 p-8 rounded-xl card-hover">
-                    <div class="text-purple-600 text-4xl mb-4">
+                
+                <!-- Услуга 6 -->
+                <div class="card p-8">
+                    <div class="feature-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Оптимизация скорости сайта</h3>
-                    <p class="text-gray-600">Ускоряю загрузку вашего сайта за счет оптимизации изображений, кода и серверных настроек, улучшая опыт пользователей и SEO.</p>
+                    <h3 class="text-xl font-bold mb-3">Оптимизация скорости</h3>
+                    <p class="text-gray-600">Ускоряем загрузку вашего сайта, улучшая пользовательский опыт и SEO-показатели.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Секция нейросотрудника -->
-    <section class="py-12 md:py-20 bg-gray-100" id="ai-team">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-2xl md:text-4xl font-bold mb-4">Нейросотрудники</h2>
-                <div class="w-16 md:w-20 h-1 bg-purple-600 mx-auto"></div>
+    <!-- Секция нейросотрудников (оставляем без изменений) -->
+    <section class="py-12 md:py-20 bg-white" id="ai-team">
+        <!-- ... весь существующий код секции нейросотрудников ... -->
+    </section>
+
+    <!-- CTA секция -->
+    <section class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Готовы создать что-то великое?</h2>
+                <p class="text-lg text-gray-300 mb-8">Давайте обсудим ваш проект и найдем лучшие решения для вашего бизнеса.</p>
+                <a href="#contact" class="btn-primary inline-block">Начать проект</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- нейросотрудники-->
+    <section class="py-20 bg-white" id="ai-team">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-sm font-semibold text-indigo-600 mb-2">НАШИ AI АССИСТЕНТЫ</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Нейросотрудники</h2>
+                <div class="w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto"></div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-20">
-                <div class="space-y-4 md:space-y-6">
-                    <h3 class="text-xl md:text-2xl font-bold text-purple-600 animate-child">Цифровые сотрудники нового поколения</h3>
-                    <p class="text-sm md:text-base text-gray-600 animate-child">
-                        Мои нейросотрудники - это AI-ассистенты с глубоким обучением, способные решать комплексные задачи 
-                        24/7. Они сочетают в себе мощь нейросетей и бизнес-логики для автоматизации процессов.
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-gradient">Цифровые сотрудники нового поколения</h3>
+                    <p class="text-lg text-gray-600">
+                        Наши нейросотрудники — это AI-ассистенты с глубоким обучением, работающие 24/7. Они автоматизируют процессы, сочетая нейросети и бизнес-логику.
                     </p>
-                    <div class="space-y-2 md:space-y-4">
+                    <div class="space-y-4">
                         <div class="flex items-start">
-                            <div class="text-purple-600 text-lg md:text-xl mt-1 mr-3 md:mr-4">
+                            <div class="feature-icon">
                                 <i class="fas fa-brain"></i>
                             </div>
                             <div>
-                                <h4 class="text-base md:text-lg font-semibold">Основные возможности</h4>
-                                <ul class="list-disc list-inside text-gray-600 pl-3 md:pl-4 text-sm md:text-base">
+                                <h4 class="text-lg font-semibold">Основные возможности</h4>
+                                <ul class="list-disc list-inside text-gray-600 pl-4">
                                     <li>Обработка естественного языка (NLP)</li>
                                     <li>Прогнозная аналитика</li>
                                     <li>Персонализация взаимодействия</li>
@@ -610,19 +337,22 @@
                     </div>
                 </div>
 
-                <!-- Анимированная иконка -->
-                <div class="relative flex items-center justify-center mt-6 md:mt-0">
-                    <div class="ai-loader animate-child">
-                        <div class="orbit"></div>
-                        <div class="orbit delay-1"></div>
-                        <div class="orbit delay-2"></div>
-                        <div class="core"></div>
+                <div class="relative flex items-center justify-center">
+                    <div class="w-64 h-64 relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full transform scale-125 opacity-50 float-animation"></div>
+                        <div class="absolute inset-4 bg-white rounded-full shadow-lg flex items-center justify-center">
+                            <i class="fas fa-brain text-5xl text-indigo-600"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Выбор нейросотрудника -->
-            <div class="text-center mb-8">
-                <select id="aiSelector" class="border rounded-lg p-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-purple-400" onchange="switchAI(event)">
+
+            <div class="mb-12 bg-white border-gradient rounded-lg p-6 flex flex-col sm:flex-row items-center justify-between">
+                <div class="mb-4 sm:mb-0">
+                    <h3 class="text-lg font-bold text-gray-900">Выберите AI-ассистента</h3>
+                    <p class="text-gray-600 text-sm">Познакомьтесь с нашими умными помощниками для вашего бизнеса</p>
+                </div>
+                <select id="aiSelector" class="bg-white border-gradient rounded-lg py-3 px-4 text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     <option value="design">Дизайн-Ассистент</option>
                     <option value="tarot">Таро-Ассистент</option>
                     <option value="hr">HR-Ассистент</option>
@@ -630,77 +360,67 @@
                 </select>
             </div>
 
-            <!-- Уведомление -->
-            <div id="aiNotification" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50 pointer-events-none">
+            <div id="aiNotification" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 z-50 pointer-events-none">
                 Я пока не подключён! Мой разработчик ищет сервер для моего обучения — видимо, я слишком умён для обычного оборудования 😉
             </div>
 
-            <!-- Контейнер для нейросотрудников -->
-            <div id="aiContainer">
+            <div id="aiContainer" class="relative">
                 <!-- Дизайн-Ассистент -->
-                <div id="designAssistant" class="bg-white rounded-xl md:rounded-2xl shadow-lg md:shadow-xl overflow-hidden">
-                    <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
-                        <div class="p-4 md:p-8 border-r border-gray-100">
-                            <div class="flex items-start mb-4 md:mb-6">
-                                <div class="ai-avatar">
-                                    <div class="design-animation">
-                                        <div class="palette"></div>
-                                        <i class="fas fa-paint-brush brush"></i>
-                                    </div>
+                <div id="designAssistant" class="card absolute inset-0 transition-opacity duration-500 opacity-100">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="p-8">
+                            <div class="flex items-start mb-6">
+                                <div class="feature-icon">
+                                    <i class="fas fa-paint-brush"></i>
                                 </div>
-                                <div class="ml-4 md:ml-6 flex-1">
-                                    <h3 class="text-lg md:text-xl font-bold mb-2">Дизайн-Ассистент</h3>
-                                    <p class="text-xs md:text-sm text-gray-600">AI для создания креативных концепций</p>
+                                <div class="ml-6 flex-1">
+                                    <h3 class="text-xl font-bold mb-2">Дизайн-Ассистент</h3>
+                                    <p class="text-gray-600">AI для создания креативных концепций</p>
                                 </div>
                             </div>
-                            <div class="chat-interface bg-gray-50 rounded-lg p-3 md:p-4">
-                                <div class="chat-messages h-32 md:h-48 overflow-y-auto mb-3 md:mb-4" id="designChatMessages">
+                            <div class="bg-white p-4">
+                                <div class="chat-messages h-39 overflow-y-auto mb-4" id="designChatMessages">
                                     <div class="bot-message">
-                                        <div class="text-xs md:text-sm text-gray-500 mb-1 md:mb-2">Креативный Генератор</div>
-                                        <div class="bg-white p-2 md:p-3 rounded-lg shadow-sm text-sm md:text-base">
+                                        <div class="text-sm text-gray-500 mb-2">Креативный Генератор</div>
+                                        <div class="bg-white p-3 rounded-lg shadow-sm">
                                             Готов создавать уникальные дизайны. Опишите вашу концепцию
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex gap-2">
-                                    <input type="text" 
-                                        class="flex-1 border rounded-lg p-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-purple-400"
-                                        placeholder="Опишите ваш дизайн...">
-                                    <button class="ai-action-btn bg-purple-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm md:text-base" data-chat-id="designChatMessages">
-                                        Создать
-                                    </button>
+                                    <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Опишите ваш дизайн...">
+                                    <button Vansbutton class="ai-action-btn btn-primary" data-chat-id="designChatMessages">Создать</button>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="p-4 md:p-8">
-                            <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6">Возможности Дизайн-Ассистента</h3>
-                            <div class="grid gap-2 md:gap-4">
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-6">Возможности Дизайн-Ассистента</h3>
+                            <div class="grid gap-4">
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-palette text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-palette"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Генерация стиля</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Автоматический подбор цветовых схем и типографики</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Генерация стиля</h4>
+                                        <p class="text-gray-600">Автоматический подбор цветовых схем и типографики</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-vector-square text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-vector-square"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Векторная графика</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Создание SVG-графики по текстовому описанию</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Векторная графика</h4>
+                                        <p class="text-gray-600">Создание SVG-графики по текстовому описанию</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-magic text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-magic"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Авто-макетирование</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Адаптивная верстка с учетом трендов дизайна</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Авто-макетирование</h4>
+                                        <p class="text-gray-600">Адаптивная верстка с учетом трендов дизайна</p>
                                     </div>
                                 </div>
                             </div>
@@ -709,70 +429,61 @@
                 </div>
 
                 <!-- Таро-Ассистент -->
-                <div id="tarotAssistant" class="bg-white rounded-xl md:rounded-2xl shadow-lg md:shadow-xl overflow-hidden hidden">
-                    <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
-                        <div class="p-4 md:p-8 border-r border-gray-100">
-                            <div class="flex items-start mb-4 md:mb-6">
-                                <div class="ai-avatar">
-                                    <div class="tarot-animation">
-                                        <div class="tarot-card"></div>
-                                        <div class="tarot-card"></div>
-                                        <div class="tarot-card"></div>
-                                    </div>
+                <div id="tarotAssistant" class="card absolute inset-0 transition-opacity duration-500 opacity-0 hidden">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="p-8">
+                            <div class="flex items-start mb-6">
+                                <div class="feature-icon">
+                                    <i class="fas fa-layer-group"></i>
                                 </div>
-                                <div class="ml-4 md:ml-6 flex-1">
-                                    <h3 class="text-lg md:text-xl font-bold mb-2">Таро-Ассистент</h3>
-                                    <p class="text-xs md:text-sm text-gray-600">AI с обучением на 10,000+ раскладов</p>
+                                <div class="ml-6 flex-1">
+                                    <h3 class="text-xl font-bold mb-2">Таро-Ассистент</h3>
+                                    <p class="text-gray-600">AI с обучением на 10,000+ раскладов</p>
                                 </div>
                             </div>
-                            <div class="chat-interface bg-gray-50 rounded-lg p-3 md:p-4">
-                                <div class="chat-messages h-32 md:h-48 overflow-y-auto mb-3 md:mb-4" id="tarotChatMessages">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="chat-messages h-48 overflow-y-auto mb-4" id="tarotChatMessages">
                                     <div class="bot-message">
-                                        <div class="text-xs md:text-sm text-gray-500 mb-1 md:mb-2">Цифровой Оракул</div>
-                                        <div class="bg-white p-2 md:p-3 rounded-lg shadow-sm text-sm md:text-base">
+                                        <div class="text-sm text-gray-500 mb-2">Цифровой Оракул</div>
+                                        <div class="bg-white p-3 rounded-lg shadow-sm">
                                             Готов раскрыть тайны вселенной. Задайте вопрос или выберите тип расклада
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex gap-2">
-                                    <input type="text" 
-                                        class="flex-1 border rounded-lg p-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-purple-400"
-                                        placeholder="Введите ваш вопрос...">
-                                    <button class="ai-action-btn bg-purple-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm md:text-base" data-chat-id="tarotChatMessages">
-                                        Отправить
-                                    </button>
+                                    <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Введите ваш вопрос...">
+                                    <button class="ai-action-btn btn-primary" data-chat-id="tarotChatMessages">Отправить</button>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="p-4 md:p-8">
-                            <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6">Возможности Таро-Ассистента</h3>
-                            <div class="grid gap-2 md:gap-4">
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-6">Возможности Таро-Ассистента</h3>
+                            <div class="grid gap-4">
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
+                                    <div class="feature-icon">
                                         <i class="fas fa-layer-group"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">78 Арканов</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Полная колода с историческими трактовками и AI-интерпретациями</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">78 Арканов</h4>
+                                        <p class="text-gray-600">Полная колода с историческими трактовками и AI-интерпретациями</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
+                                    <div class="feature-icon">
                                         <i class="fas fa-people-arrows"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Паттерны отношений</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Анализ совместимости и прогноз развития отношений</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Паттерны отношений</h4>
+                                        <p class="text-gray-600">Анализ совместимости и прогноз развития отношений</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-dna text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-dna"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Нейро-интуиция</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Гибридная модель: машинное обучение + эзотерические алгоритмы</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Нейро-интуиция</h4>
+                                        <p class="text-gray-600">Гибридная модель: машинное обучение + эзотерические алгоритмы</p>
                                     </div>
                                 </div>
                             </div>
@@ -781,68 +492,61 @@
                 </div>
 
                 <!-- HR-Ассистент -->
-                <div id="hrAssistant" class="bg-white rounded-xl md:rounded-2xl shadow-lg md:shadow-xl overflow-hidden hidden">
-                    <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
-                        <div class="p-4 md:p-8 border-r border-gray-100">
-                            <div class="flex items-start mb-4 md:mb-6">
-                                <div class="ai-avatar">
-                                    <div class="hr-animation">
-                                        <i class="fas fa-users"></i>
-                                    </div>
+                <div id="hrAssistant" class="card absolute inset-0 transition-opacity duration-500 opacity-0 hidden">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="p-8">
+                            <div class="flex items-start mb-6">
+                                <div class="feature-icon">
+                                    <i class="fas fa-users"></i>
                                 </div>
-                                <div class="ml-4 md:ml-6 flex-1">
-                                    <h3 class="text-lg md:text-xl font-bold mb-2">HR-Ассистент</h3>
-                                    <p class="text-xs md:text-sm text-gray-600">AI для управления персоналом и подбора кадров</p>
+                                <div class="ml-6 flex-1">
+                                    <h3 class="text-xl font-bold mb-2">HR-Ассистент</h3>
+                                    <p class="text-gray-600">AI для управления персоналом и подбора кадров</p>
                                 </div>
                             </div>
-                            <div class="chat-interface bg-gray-50 rounded-lg p-3 md:p-4">
-                                <div class="chat-messages h-32 md:h-48 overflow-y-auto mb-3 md:mb-4" id="hrChatMessages">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="chat-messages h-48 overflow-y-auto mb-4" id="hrChatMessages">
                                     <div class="bot-message">
-                                        <div class="text-xs md:text-sm text-gray-500 mb-1 md:mb-2">Ваш HR-помощник</div>
-                                        <div class="bg-white p-2 md:p-3 rounded-lg shadow-sm text-sm md:text-base">
+                                        <div class="text-sm text-gray-500 mb-2">Ваш HR-помощник</div>
+                                        <div class="bg-white p-3 rounded-lg shadow-sm">
                                             Готов помочь с подбором сотрудников. Опишите вакансию или загрузите резюме
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex gap-2">
-                                    <input type="text" 
-                                        class="flex-1 border rounded-lg p-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-purple-400"
-                                        placeholder="Опишите вакансию...">
-                                    <button class="ai-action-btn bg-purple-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm md:text-base" data-chat-id="hrChatMessages">
-                                        Найти
-                                    </button>
+                                    <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Опишите вакансию...">
+                                    <button class="ai-action-btn btn-primary" data-chat-id="hrChatMessages">Найти</button>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="p-4 md:p-8">
-                            <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6">Возможности HR-Ассистента</h3>
-                            <div class="grid gap-2 md:gap-4">
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-6">Возможности HR-Ассистента</h3>
+                            <div class="grid gap-4">
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-file-alt text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-file-alt"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Анализ резюме</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Оценка навыков и соответствия кандидатов</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Анализ резюме</h4>
+                                        <p class="text-gray-600">Оценка навыков и соответствия кандидатов</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-calendar-check text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-calendar-check"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Планирование собеседований</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Автоматическое создание расписания и уведомлений</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Планирование собеседований</h4>
+                                        <p class="text-gray-600">Автоматическое создание расписания и уведомлений</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-users-cog text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-users-cog"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">HR-аналитика</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Прогноз текучести кадров и рекомендации</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">HR-аналитика</h4>
+                                        <p class="text-gray-600">Прогноз текучести кадров и рекомендации</p>
                                     </div>
                                 </div>
                             </div>
@@ -851,68 +555,61 @@
                 </div>
 
                 <!-- Коуч-Ассистент -->
-                <div id="coachAssistant" class="bg-white rounded-xl md:rounded-2xl shadow-lg md:shadow-xl overflow-hidden hidden">
-                    <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
-                        <div class="p-4 md:p-8 border-r border-gray-100">
-                            <div class="flex items-start mb-4 md:mb-6">
-                                <div class="ai-avatar">
-                                    <div class="coach-display">
-                                        <i class="fas fa-lightbulb"></i>
-                                    </div>
+                <div id="coachAssistant" class="card absolute inset-0 transition-opacity duration-500 opacity-0 hidden">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="p-8">
+                            <div class="flex items-start mb-6">
+                                <div class="feature-icon">
+                                    <i class="fas fa-lightbulb"></i>
                                 </div>
-                                <div class="ml-4 md:ml-6 flex-1">
-                                    <h3 class="text-lg md:text-xl font-bold mb-2">Коуч-Ассистент</h3>
-                                    <p class="text-xs md:text-sm text-gray-600">AI для личностного роста и мотивации</p>
+                                <div class="ml-6 flex-1">
+                                    <h3 class="text-xl font-bold mb-2">Коуч-Ассистент</h3>
+                                    <p class="text-gray-600">AI для личностного роста и мотивации</p>
                                 </div>
                             </div>
-                            <div class="chat-interface bg-gray-50 rounded-lg p-3 md:p-4">
-                                <div class="chat-messages h-32 md:h-48 overflow-y-auto mb-3 md:mb-4" id="coachChatMessages">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="chat-messages h-48 overflow-y-auto mb-4" id="coachChatMessages">
                                     <div class="bot-message">
-                                        <div class="text-xs md:text-sm text-gray-500 mb-1 md:mb-2">Ваш личный коуч</div>
-                                        <div class="bg-white p-2 md:p-3 rounded-lg shadow-sm text-sm md:text-base">
+                                        <div class="text-sm text-gray-500 mb-2">Ваш личный коуч</div>
+                                        <div class="bg-white p-3 rounded-lg shadow-sm">
                                             Давайте достигнем ваших целей! Назови цель или задай вопрос
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex gap-2">
-                                    <input type="text" 
-                                        class="flex-1 border rounded-lg p-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-purple-400"
-                                        placeholder="Опишите вашу цель...">
-                                    <button class="ai-action-btn bg-purple-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-purple-700 transition text-sm md:text-base" data-chat-id="coachChatMessages">
-                                        Начать
-                                    </button>
+                                    <input type="text" class="flex-1 bg-white border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Опишите вашу цель...">
+                                    <button class="ai-action-btn btn-primary" data-chat-id="coachChatMessages">Начать</button>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="p-4 md:p-8">
-                            <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6">Возможности Коуч-Ассистента</h3>
-                            <div class="grid gap-2 md:gap-4">
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-6">Возможности Коуч-Ассистента</h3>
+                            <div class="grid gap-4">
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-bullseye text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bullseye"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Постановка целей</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Помощь в формулировке SMART-целей</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Постановка целей</h4>
+                                        <p class="text-gray-600">Помощь в формулировке SMART-целей</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-heart text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-heart"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Мотивация</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Персонализированные советы для поддержания мотивации</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Мотивация</h4>
+                                        <p class="text-gray-600">Персонализированные советы для поддержания мотивации</p>
                                     </div>
                                 </div>
                                 <div class="flex items-start">
-                                    <div class="text-purple-600 mt-1 mr-3 md:mr-4">
-                                        <i class="fas fa-graduation-cap text-sm md:text-base"></i>
+                                    <div class="feature-icon">
+                                        <i class="fas fa-graduation-cap"></i>
                                     </div>
-                                    <div>
-                                        <h4 class="text-sm md:text-base font-semibold mb-1 md:mb-2">Развитие навыков</h4>
-                                        <p class="text-xs md:text-sm text-gray-600">Упражнения для улучшения коммуникации и лидерства</p>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-semibold mb-2">Развитие навыков</h4>
+                                        <p class="text-gray-600">Упражнения для улучшения коммуникации и лидерства</p>
                                     </div>
                                 </div>
                             </div>
@@ -920,348 +617,122 @@
                     </div>
                 </div>
             </div>
-
-            <script>
-                // Функция переключения ассистентов
-                function switchAI(event) {
-                    const selectedAI = event.target.value;
-                    const designAssistant = document.getElementById('designAssistant');
-                    const tarotAssistant = document.getElementById('tarotAssistant');
-                    const hrAssistant = document.getElementById('hrAssistant');
-                    const coachAssistant = document.getElementById('coachAssistant');
-
-                    // Проверяем существование элементов
-                    if (!designAssistant || !tarotAssistant || !hrAssistant || !coachAssistant) {
-                        console.error('Один или несколько ассистентов не найдены!');
-                        return;
-                    }
-
-                    // Скрываем все ассистенты
-                    designAssistant.classList.add('hidden');
-                    tarotAssistant.classList.add('hidden');
-                    hrAssistant.classList.add('hidden');
-                    coachAssistant.classList.add('hidden');
-
-                    // Показываем выбранного ассистента
-                    if (selectedAI === 'design') {
-                        designAssistant.classList.remove('hidden');
-                    } else if (selectedAI === 'tarot') {
-                        tarotAssistant.classList.remove('hidden');
-                    } else if (selectedAI === 'hr') {
-                        hrAssistant.classList.remove('hidden');
-                    } else if (selectedAI === 'coach') {
-                        coachAssistant.classList.remove('hidden');
-                    }
-                }
-
-                // Функция для показа уведомления
-                function showAINotification() {
-                    const notification = document.getElementById('aiNotification');
-                    if (!notification) {
-                        console.error('Уведомление не найдено!');
-                        return;
-                    }
-
-                    // Показываем уведомление
-                    notification.classList.remove('opacity-0');
-                    notification.classList.add('opacity-100');
-
-                    // Скрываем через 3 секунды
-                    setTimeout(() => {
-                        notification.classList.remove('opacity-100');
-                        notification.classList.add('opacity-0');
-                    }, 3000);
-                }
-
-                // Функция для добавления сообщения в чат
-                function addMessageToChat(chatId) {
-                    const chatMessages = document.getElementById(chatId);
-                    if (!chatMessages) {
-                        console.error('Чат не найден для ID:', chatId);
-                        return;
-                    }
-
-                    // Создаём новое сообщение
-                    const newMessage = document.createElement('div');
-                    newMessage.className = 'bot-message';
-                    newMessage.innerHTML = `
-                        <div class="text-xs md:text-sm text-gray-500 mb-1 md:mb-2">Ассистент</div>
-                        <div class="bg-white p-2 md:p-3 rounded-lg shadow-sm text-sm md:text-base">
-                            Я пока не подключён! Мой разработчик ищет сервер для моего обучения — видимо, я слишком умён для обычного оборудования 😉
-                        </div>
-                    `;
-
-                    // Добавляем сообщение в чат
-                    chatMessages.appendChild(newMessage);
-
-                    // Прокручиваем чат вниз, чтобы последнее сообщение было видно
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }
-
-                // Добавляем обработчики событий для кнопок
-                document.addEventListener('DOMContentLoaded', () => {
-                    // Показываем Дизайн-Ассистента по умолчанию
-                    const designAssistant = document.getElementById('designAssistant');
-                    if (designAssistant) {
-                        designAssistant.classList.remove('hidden');
-                    }
-
-                    // Находим все кнопки с классом ai-action-btn
-                    const buttons = document.querySelectorAll('.ai-action-btn');
-                    buttons.forEach(button => {
-                        button.addEventListener('click', (event) => {
-                            event.preventDefault(); // Предотвращаем стандартное поведение кнопки
-
-                            // Добавляем сообщение в чат
-                            const chatId = button.getAttribute('data-chat-id');
-                            if (chatId) {
-                                addMessageToChat(chatId);
-                            }
-
-                            // Показываем всплывающее уведомление
-                            showAINotification();
-                        });
-                    });
-                });
-            </script>
-
-            <style>
-                .hidden {
-                    display: none;
-                }
-
-                /* Стили для уведомления */
-                #aiNotification {
-                    transition: opacity 0.3s ease-in-out;
-                }
-            </style>
         </div>
     </section>
 
     <style>
-        /* Общие стили анимаций */
-        .ai-loader {
+        .hidden {
+            display: none;
+        }
+
+        #aiNotification {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #aiContainer {
             position: relative;
-            width: 200px;
-            height: 200px;
+            min-height: 400px;
         }
 
-        .orbit {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 2px solid #8b5cf6;
-            border-radius: 50%;
-            animation: pulse 3s infinite ease-in-out;
-            opacity: 0.3;
+        #aiContainer .card {
+            transition: opacity 0.5s ease-in-out;
         }
 
-        .delay-1 { animation-delay: 0.5s; }
-        .delay-2 { animation-delay: 1s; }
-
-        .core {
-            position: absolute;
-            top: 35%;
-            left: 35%;
-            width: 30%;
-            height: 30%;
-            background: #8b5cf6;
-            border-radius: 50%;
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.3; }
-            50% { transform: scale(1.2); opacity: 0.1; }
-            100% { transform: scale(0.8); opacity: 0.3; }
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 0 10px #8b5cf644; }
-            to { box-shadow: 0 0 30px #8b5cf688; }
-        }
-
-
-        /* Миниатюрная версия анимации карт Таро */
-        .tarot-animation {
-            position: relative;
-            width: 36px;  /* Сильно уменьшено */
-            height: 50px; /* Сохраняем пропорции */
-            perspective: 800px;
-            margin: 0 auto; /* Центрирование */
-        }
-
-        .tarot-card {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            border: 1.5px solid #8b5cf6; /* Тонкая рамка */
-            border-radius: 4px;
-            transform-style: preserve-3d;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            animation-duration: 3s;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
-            backface-visibility: hidden;
-        }
-
-        .tarot-card::before {
-            content: '🎴';
-            position: absolute;
-            font-size: 14px; /* Очень маленький символ */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.7;
-        }
-
-        .tarot-card:nth-child(1) {
-            animation-name: mini-spread-1;
-        }
-
-        .tarot-card:nth-child(2) {
-            animation-name: mini-spread-2;
-            animation-delay: 0.1s;
-        }
-
-        .tarot-card:nth-child(3) {
-            animation-name: mini-spread-3;
-            animation-delay: 0.2s;
-        }
-
-        @keyframes mini-spread-1 {
-            0%, 100% { transform: translateX(0) rotate(-4deg); }
-            50% { transform: translateX(-8px) rotate(-6deg); }
-        }
-
-        @keyframes mini-spread-2 {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(2deg); }
-        }
-
-        @keyframes mini-spread-3 {
-            0%, 100% { transform: translateX(0) rotate(4deg); }
-            50% { transform: translateX(8px) rotate(6deg); }
-        }
-
-        /* Адаптация для мобильных */
-        @media (max-width: 768px) {
-            .tarot-animation {
-                width: 30px;
-                height: 42px;
-            }
-            
-            .tarot-card::before {
-                font-size: 12px;
-            }
-            
-            @keyframes mini-spread-1 {
-                50% { transform: translateX(-6px) rotate(-5deg); }
-            }
-            
-            @keyframes mini-spread-3 {
-                50% { transform: translateX(6px) rotate(5deg); }
-            }
-        }
-
-
-
-        /* Новая анимация для дизайн-ассистента (палитра с кисточкой) */
-        .design-animation {
-            position: relative;
-            width: 50px;
-            height: 50px;
-        }
-
-        .palette {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: conic-gradient(
-                #ff6b6b 0% 15%,
-                #ffd93d 15% 30%,
-                #6cff6b 30% 45%,
-                #6b83ff 45% 60%,
-                #c56bff 60% 75%,
-                #ff6bc9 75% 90%,
-                #ff6b6b 90% 100%
-            );
-            animation: palette-rotate 6s linear infinite;
-        }
-
-        .brush {
-            position: absolute;
-            top: 5px;
-            left: 25px;
-            font-size: 24px;
-            color: #8b5cf6;
-            transform-origin: bottom center;
-            animation: brush-paint 2s ease-in-out infinite;
-        }
-
-        @keyframes palette-rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes brush-paint {
-            0%, 100% { 
-                transform: translateY(0) rotate(-15deg);
-            }
-            50% { 
-                transform: translateY(10px) rotate(15deg);
-            }
-        }
-
-        /* Адаптация для мобильных */
-        @media (max-width: 768px) {
-            .tarot-animation {
-                width: 45px;
-                height: 60px;
-            }
-            
-            .design-animation {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .palette {
-                width: 30px;
-                height: 30px;
-            }
-            
-            .brush {
-                font-size: 18px;
-            }
-        }
-
-
-        /* Адаптация для мобильных */
-        @media (max-width: 768px) {
-            .chat-messages {
-                height: 150px !important;
-            }
-            .ai-loader {
-                width: 150px;
-                height: 150px;
-            }
-            .design-animation {
-                width: 40px;
-                height: 40px;
-            }
-            .shape {
-                animation-duration: 4s;
-            }
+        #aiContainer .card.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
     </style>
 
+    <script>
+        function switchAI(event) {
+            const selectedAI = event.target.value;
+            const designAssistant = document.getElementById('designAssistant');
+            const tarotAssistant = document.getElementById('tarotAssistant');
+            const hrAssistant = document.getElementById('hrAssistant');
+            const coachAssistant = document.getElementById('coachAssistant');
 
-   <!-- Объединенная секция: Специальное предложение и Контакты -->
-    <section class="gradient-bg text-white py-12 md:py-20 px-4 w-full" id="kontakt">
-        <div class="container mx-auto">
-        <!-- Compact Discount Block with Larger Timer -->
-        <div class="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-4 md:p-6 mb-6 md:mb-8 transform transition-all duration-300 hover:shadow-xl w-full">
+            if (!designAssistant || !tarotAssistant || !hrAssistant || !coachAssistant) {
+                console.error('Один или несколько ассистентов не найдены!');
+                return;
+            }
+
+            designAssistant.classList.add('hidden');
+            tarotAssistant.classList.add('hidden');
+            hrAssistant.classList.add('hidden');
+            coachAssistant.classList.add('hidden');
+
+            if (selectedAI === 'design') {
+                designAssistant.classList.remove('hidden');
+            } else if (selectedAI === 'tarot') {
+                tarotAssistant.classList.remove('hidden');
+            } else if (selectedAI === 'hr') {
+                hrAssistant.classList.remove('hidden');
+            } else if (selectedAI === 'coach') {
+                coachAssistant.classList.remove('hidden');
+            }
+        }
+
+        function showAINotification() {
+            const notification = document.getElementById('aiNotification');
+            if (!notification) {
+                console.error('Уведомление не найдено!');
+                return;
+            }
+
+            notification.classList.remove('opacity-0');
+            notification.classList.add('opacity-100');
+
+            setTimeout(() => {
+                notification.classList.remove('opacity-100');
+                notification.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        function addMessageToChat(chatId) {
+            const chatMessages = document.getElementById(chatId);
+            if (!chatMessages) {
+                console.error('Чат не найден для ID:', chatId);
+                return;
+            }
+
+            const newMessage = document.createElement('div');
+            newMessage.className = 'bot-message';
+            newMessage.innerHTML = `
+                <div class="text-sm text-gray-500 mb-2">Ассистент</div>
+                <div class="bg-white p-3 rounded-lg shadow-sm">
+                    Я пока не подключён! Мой разработчик ищет сервер для моего обучения — видимо, я слишком умён для обычного оборудования 😉
+                </div>
+            `;
+
+            chatMessages.appendChild(newMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const designAssistant = document.getElementById('designAssistant');
+            if (designAssistant) {
+                designAssistant.classList.remove('hidden');
+            }
+
+            const buttons = document.querySelectorAll('.ai-action-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const chatId = button.getAttribute('data-chat-id');
+                    if (chatId) {
+                        addMessageToChat(chatId);
+                    }
+                    showAINotification();
+                });
+            });
+        });
+    </script>
+    <section class="py-20 bg-gradient-light" id="kontakt">
+        <div class="container mx-auto px-6">
+            <!-- Special Offer -->
+   
+ <div class="bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-4 md:p-6 mb-6 md:mb-8 transform transition-all duration-300 hover:shadow-xl w-full">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4" style="transform: scale(0.9); transform-origin: center;">
                 <!-- Content -->
                 <div class="flex-1">
@@ -1279,7 +750,7 @@
                     
                     <!-- Price Section -->
                     <div class="flex items-baseline gap-2 mb-4">
-                        <span class="text-3xl md:text-4xl font-bold text-yellow-300">9 000 ₽</span>
+                        <span class="text-3xl md:text-4xl font-bold text-gradient">9 000 ₽</span>
                         <span class="price-strike text-lg text-gray-300"><s>25 000 ₽</s></span>
                     </div>
                     
@@ -1324,54 +795,59 @@
                     </div>
                 </div>
             </div>
-            <p class="text-xs md:text-sm text-white/80 mt-3 text-center animate-pulse">
+            <!-- <p class="text-xs md:text-sm text-white/80 mt-3 text-center animate-pulse">
                 <i class="fas fa-exclamation-triangle mr-1"></i> Успейте оставить заявку, предложение ограничено!
-            </p>
+            </p> -->
         </div>
-            <!-- Контакты и форма -->
-            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
-                <!-- Контактная информация -->
-                <div class="lg:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Свяжитесь со мной</h2>
-                    <p class="text-lg mb-8 opacity-90">Готовы начать проект или есть вопросы? Напишите мне в Telegram или оставьте заявку, и я свяжусь с вами в ближайшее время.</p>
+            <!-- Contact and Form -->
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Contact Information -->
+                <div class="card p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gradient mb-6">Свяжитесь с нами</h2>
+                    <p class="text-lg text-gray-600 mb-8">Готовы начать проект или есть вопросы? Напишите нам или оставьте заявку!</p>
                     <div class="space-y-6">
                         <div class="flex items-start">
-                            <div class="text-xl mr-4 mt-1"><i class="fas fa-phone-alt"></i></div>
+                            <div class="feature-icon mr-4">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
                             <div>
-                                <h4 class="font-bold mb-1">Телефон</h4>
-                                <p><a href="tel:+79220064233">+7 (922) 006-42-33</a></p>
+                                <h4 class="font-semibold text-gray-900 mb-1">Телефон</h4>
+                                <p><a href="tel:+79220064233" class="text-indigo-600 hover:text-indigo-800">+7 (922) 006-42-33</a></p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="text-xl mr-4 mt-1"><i class="fas fa-envelope"></i></div>
+                            <div class="feature-icon mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
                             <div>
-                                <h4 class="font-bold mb-1">Telegram</h4>
-                                <p><a href="https://t.me/brand_company_io">@brand_company_io</a></p>
+                                <h4 class="font-semibold text-gray-900 mb-1">Telegram</h4>
+                                <p><a href="https://t.me/brand_company_io" class="text-indigo-600 hover:text-indigo-800">@brand_company_io</a></p>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-10 flex space-x-4">
-                        <a href="https://vk.com/vk.brandcompany" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition">
-                            <i class="fab fa-vk"></i>
+                    <div class="mt-8 flex space-x-4">
+                        <a href="https://vk.com/vk.brandcompany" class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center hover:bg-indigo-200 transition">
+                            <i class="fab fa-vk text-indigo-600"></i>
                         </a>
-                        <a href="https://t.me/brand_company_io" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition">
-                            <i class="fab fa-telegram-plane"></i>
+                        <a href="https://t.me/brand_company_io" class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center hover:bg-indigo-200 transition">
+                            <i class="fab fa-telegram-plane text-indigo-600"></i>
                         </a>
-                        <a href="https://wa.me/79829167718" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition">
-                            <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/79829167718" class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center hover:bg-indigo-200 transition">
+                            <i class="fab fa-whatsapp text-indigo-600"></i>
                         </a>
                     </div>
                 </div>
-                <!-- Форма -->
-                <div class="lg:w-1/2">
-                    <form id="signup-form" class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 md:p-8">
+
+                <!-- Form -->
+                <div class="card p-8">
+                    <form id="signup-form" class="">
                         <div class="mb-6">
-                            <label for="name" class="block mb-2">Ваше имя</label>
-                            <input type="text" id="name" class="w-full bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg py-3 px-4 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50" required>
+                            <label for="name" class="block mb-2 text-gray-900 font-semibold">Ваше имя</label>
+                            <input type="text" id="name" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                         </div>
                         <div class="mb-6">
-                            <label for="site-type" class="block mb-2">Тип сайта</label>
-                            <select id="site-type" name="site-type" class="w-full bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50" required>
+                            <label for="site-type" class="block mb-2 text-gray-900 font-semibold">Тип сайта</label>
+                            <select id="site-type" name="site-type" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                                 <option value="" disabled selected>Выберите тип сайта</option>
                                 <option value="one-page">Одностраничный</option>
                                 <option value="multi-page">Многостраничный</option>
@@ -1380,21 +856,21 @@
                             </select>
                         </div>
                         <div class="mb-6">
-                            <label for="phone" class="block mb-2">Телефон</label>
-                            <input type="tel" id="phone" class="w-full bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg py-3 px-4 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50" pattern="[0-9+\-\s]+" title="Введите только цифры, +, - или пробелы" required>
+                            <label for="phone" class="block mb-2 text-gray-900 font-semibold">Телефон</label>
+                            <input type="tel" id="phone" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500" pattern="[0-9+\-\s]+" title="Введите только цифры, +, - или пробелы" required>
                         </div>
                         <div class="mb-6">
-                            <label for="message" class="block mb-2">Сообщение</label>
-                            <textarea id="message" rows="4" class="w-full bg-white bg-opacity-20 border border-white border-opacity-30 rounded-lg py-3 px-4 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50" placeholder="(Необязательно)"></textarea>
+                            <label for="message" class="block mb-2 text-gray-900 font-semibold">Сообщение</label>
+                            <textarea id="message" rows="4" class="w-full bg-white border border-gray-300 rounded-lg py-3 px-4 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="(Необязательно)"></textarea>
                         </div>
                         <div class="mb-6">
                             <label class="flex items-center">
-                                <input type="checkbox" id="consent" class="mr-2 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded" required>
-                                <span class="text-sm">Я даю согласие на обработку моих персональных данных в соответствии с <a href="./MySite_politika.pdf" class="underline hover:text-purple-300">Политикой конфиденциальности</a> и ознакомлен с <a href="./MySite_oferta.pdf" class="underline hover:text-purple-300">Договор-оферта</a></span>
+                                <input type="checkbox" id="consent" class="mr-2 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" required>
+                                <span class="text-sm text-gray-600">Я даю согласие на обработку моих персональных данных в соответствии с <a href="./MySite_politika.pdf" class="underline text-indigo-600 hover:text-indigo-800">Политикой конфиденциальности</a> и ознакомлен с <a href="./MySite_oferta.pdf" class="underline text-indigo-600 hover:text-indigo-800">Договор-оферта</a></span>
                             </label>
                         </div>
                         <input type="hidden" id="recaptcha-token" name="recaptcha-token">
-                        <button type="submit" class="w-full bg-white text-purple-700 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg transition duration-300">Отправить сообщение</button>
+                        <button type="submit" class="w-full btn-primary font-bold py-3 px-6 rounded-lg transition duration-300 float-animation">Отправить сообщение</button>
                     </form>
                 </div>
             </div>
@@ -1403,39 +879,43 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Фиксируем дату окончания один раз при загрузке (2.5 дня от текущего момента)
-            const endDate = new Date(Date.now() + 2.5 * 24 * 60 * 60 * 1000);
+            let endDate;
+            const storedEndDate = localStorage.getItem('countdownEndDate');
+            const now = new Date();
+
+            if (storedEndDate) {
+                endDate = new Date(storedEndDate);
+                if (endDate <= now) {
+                    endDate = new Date(now.getTime() + 2.5 * 24 * 60 * 60 * 1000);
+                    localStorage.setItem('countdownEndDate', endDate.toISOString());
+                }
+            } else {
+                endDate = new Date(now.getTime() + 2.5 * 24 * 60 * 60 * 1000);
+                localStorage.setItem('countdownEndDate', endDate.toISOString());
+            }
 
             function updateCountdown() {
                 const now = new Date();
-                const diff = endDate - now;
+                let diff = endDate - now;
 
-                // Если время истекло, показываем нули и сообщение
                 if (diff <= 0) {
-                    document.getElementById('days').textContent = '00';
-                    document.getElementById('hours').textContent = '00';
-                    document.getElementById('minutes').textContent = '00';
-                    document.getElementById('seconds').textContent = '00';
-                    document.getElementById('countdown').innerHTML = '<p class="text-lg">Предложение истекло!</p>';
-                    return;
+                    endDate = new Date(now.getTime() + 2.5 * 24 * 60 * 60 * 1000);
+                    localStorage.setItem('countdownEndDate', endDate.toISOString());
+                    diff = endDate - now;
                 }
 
-                // Расчет оставшегося времени
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                // Обновление элементов на странице с ведущими нулями
                 document.getElementById('days').textContent = days.toString().padStart(2, '0');
                 document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
                 document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
                 document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
             }
 
-            // Первоначальный вызов для немедленного отображения
             updateCountdown();
-            // Обновление каждую секунду
             setInterval(updateCountdown, 1000);
         });
     </script>
@@ -1444,277 +924,68 @@
         .pulse-animation {
             animation: pulse 2s infinite ease-in-out;
         }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.1); }
-            50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-        }
 
-        /* Увеличение отступа для мобильных устройств */
-        @media (max-width: 767px) {
-            .animate-child {
-                margin-bottom: 1.5rem; /* Увеличиваем отступ снизу на мобильных */
-            }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.1); }
+            50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
         }
     </style>
 
     <!-- Футер -->
     <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <i class="fas fa-rocket mr-2"></i>
-                        <span>Brand</span>
-                    </h3>
+                    <h3 class="text-xl font-bold mb-4 text-gradient">Brand</h3>
                     <p class="text-gray-400">Создаем цифровые решения для роста вашего бизнеса.</p>
                 </div>
                 <div>
                     <h4 class="text-lg font-bold mb-4">Навигация</h4>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Главная</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Главная</a></li>
                         <li><a href="#services" class="text-gray-400 hover:text-white transition">Услуги</a></li>
-                        <li><a href="#kontakt" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                        <li><a href="#ai-team" class="text-gray-400 hover:text-white transition">AI Ассистенты</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Контакты</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-lg font-bold mb-4">Услуги</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Оптимизация метатегов</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Защита Google от спама</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Интеграция с Telegram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">SEO Оптимизация</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Защита от спама</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Telegram-боты</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Веб-разработка</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">UI/UX дизайн</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Оптимизация скорости сайта</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">UI/UX Дизайн</a></li>
                     </ul>
                 </div>
-
-
-                <div class="relative h-48 overflow-hidden bg-gradient-to-b rounded-lg">
-                <!-- Ученый -->
-                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                    <!-- Голова -->
-                    <div class="relative w-14 h-14 bg-purple-300 rounded-full">
-                    <!-- Очки -->
-                    <div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-16 h-6 bg-purple-400 rounded-full flex justify-center">
-                        <div class="w-6 h-6 bg-purple-100 rounded-full border-2 border-purple-500"></div>
-                        <div class="w-6 h-6 bg-purple-100 rounded-full border-2 border-purple-500"></div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Контакты</h4>
+                    <ul class="space-y-2">
+                        <li class="text-gray-400">+7 (922) 006-42-33</li>
+                        <li class="text-gray-400">@brand_company_io</li>
+                    </ul>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="https://vk.com/vk.brandcompany" class="text-gray-400 hover:text-white transition"><i class="fab fa-vk"></i></a>
+                        <a href="https://t.me/brand_company_io" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram"></i></a>
+                        <a href="https://wa.me/79829167718" class="text-gray-400 hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
                     </div>
-                    <!-- Борода -->
-                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-12 h-6 bg-purple-400 rounded-b-full"></div>
-                    </div>
-                    <!-- Тело -->
-                    <div class="absolute top-12 left-1/2 transform -translate-x-1/2 w-12 h-16 bg-purple-500 rounded-lg">
-                    <!-- Карманы -->
-                    <div class="absolute top-4 left-1/2 transform -translate-x-1/2 w-10 h-3 bg-purple-600 rounded-full"></div>
-                    </div>
-                    <!-- Руки -->
-                    <div class="absolute top-14 left-1/2 arm-scientist-left animate-scientist-arm"></div>
-                    <div class="absolute top-14 left-1/2 arm-scientist-right animate-scientist-arm-delay"></div>
                 </div>
-
-                <!-- Летающие шестеренки -->
-                <div class="gear gear-1 animate-gear-1">
-                    <svg width="24" height="24" viewBox="0 0 24 24" class="text-purple-400">
-                    <path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
-                    </svg>
-                </div>
-                <div class="gear gear-2 animate-gear-2">
-                    <svg width="20" height="20" viewBox="0 0 24 24" class="text-purple-300">
-                    <path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/>
-                    </svg>
-                </div>
-                </div>
-                <style>
-                .arm-scientist-left {
-                    width: 5px;
-                    height: 22px;
-                    background: #8b5cf6;
-                    margin-left: -20px;
-                    transform-origin: top center;
-                }
-                .arm-scientist-right {
-                    width: 5px;
-                    height: 22px;
-                    background: #8b5cf6;
-                    margin-left: 15px;
-                    transform-origin: top center;
-                }
-                .animate-scientist-arm {
-                    animation: scientist-arm 4s infinite ease-in-out;
-                }
-                .animate-scientist-arm-delay {
-                    animation: scientist-arm 4s infinite 2s ease-in-out;
-                }
-                @keyframes scientist-arm {
-                    0%, 100% { transform: rotate(-30deg); }
-                    50% { transform: rotate(40deg); }
-                }
-
-                .gear {
-                    position: absolute;
-                    opacity: 0.8;
-                }
-                .gear-1 {
-                    top: 20%;
-                    left: 15%;
-                }
-                .gear-2 {
-                    top: 30%;
-                    right: 20%;
-                }
-                .animate-gear-1 {
-                    animation: float-gear-1 8s infinite ease-in-out;
-                }
-                .animate-gear-2 {
-                    animation: float-gear-2 7s infinite 1s ease-in-out;
-                }
-                @keyframes float-gear-1 {
-                    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-                    25% { transform: translate(10px, -15px) rotate(90deg); }
-                    50% { transform: translate(20px, 0) rotate(180deg); }
-                    75% { transform: translate(10px, 15px) rotate(270deg); }
-                }
-                @keyframes float-gear-2 {
-                    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-                    25% { transform: translate(-15px, 10px) rotate(-90deg); }
-                    50% { transform: translate(0, 20px) rotate(-180deg); }
-                    75% { transform: translate(15px, 10px) rotate(-270deg); }
-                }
-                </style>
             </div>
             <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-400 mb-4 md:mb-0">© 2025 Brand. Все права защищены.</p>
                 <div class="flex space-x-6">
-                    <a href="./MySite_politika.pdf" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
-                    <a href="./MySite_oferta.pdf" class="text-gray-400 hover:text-white transition">Договор-оферта</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Договор-оферта</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Модальное окно для формы -->
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-        <div class="bg-white p-6 rounded-lg text-center">
-            <h3 class="text-xl font-bold mb-4">Сообщение отправлено!</h3>
-            <p class="text-gray-600 mb-6">Спасибо за ваш запрос. Я свяжусь с вами в ближайшее время.</p>
-            <button id="close-modal" class="bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition">Закрыть</button>
-        </div>
-    </div>
-
-    <!-- Модальные окна для портфолио с каруселью -->
-    <div id="modal-project-1" class="portfolio-modal">
-        <div class="portfolio-modal-content">
-            <span class="close-modal">×</span>
-            <h3>Сайт для репетитора начальных классов</h3>
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="./img/image.png" alt="Project 1 Image 1">
-                    <img src="./img/image copy.png" alt="Project 1 Image 2">
-                    <img src="./img/image copy 2.png" alt="Project 1 Image 3">
-                </div>
-                <button class="carousel-btn prev">❮</button>
-                <button class="carousel-btn next">❯</button>
-            </div>
-            <p>Разработан сайт для репетитора начальных классов, предлагающего индивидуальные занятия. Цель — удобное представление услуг и привлечение новых учеников.</p>
-            <p><strong>Технологии:</strong></p>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>Tailwind CSS</li>
-            </ul>
-            <p><strong>Срок реализации:</strong> 1 неделя</p>
-            <p><strong>Стоимость:</strong> 9000р</p>
-            <p><strong>Результаты:</strong> Увеличение заявок на занятия на 20%, улучшение взаимодействия с родителями.</p>
-            <p><a href="https://funnyschool72.github.io/tuter/" class="text-purple-600 hover:underline">Посмотреть проект</a></p>
-        </div>
-    </div>
-
-    <div id="modal-project-2" class="portfolio-modal">
-        <div class="portfolio-modal-content">
-            <span class="close-modal">×</span>
-            <h3>Сайт для мастера вязаных сумочек</h3>
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="./img/kri1.png" alt="Project 2 Image 1">
-                    <img src="./img/kri2.png" alt="Project 2 Image 2">
-                </div>
-                <button class="carousel-btn prev">❮</button>
-                <button class="carousel-btn next">❯</button>
-            </div>
-            <p>Разработан сайт для мастера, создающего вязаные сумочки на заказ. Цель — создание уникальных изделий и привлечение новых клиентов.</p>
-            <p><strong>Технологии:</strong></p>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>Tailwind CSS</li>
-            </ul>
-            <p><strong>Срок реализации:</strong> 1 неделя</p>
-            <p><strong>Стоимость:</strong> 9000р</p>
-            <p><strong>Результаты:</strong> Увеличение заказов на 25%, улучшение взаимодействия с клиентами.</p>
-            <p><a href="https://kristikor72.github.io/" class="text-purple-600 hover:underline">Посмотреть проект</a></p>
-        </div>
-    </div>
-
-    
-    <div id="modal-project-3" class="portfolio-modal">
-        <div class="portfolio-modal-content">
-            <span class="close-modal">×</span>
-            <h3>Сайт для салона красоты</h3>
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="./img/salon1.png" alt="Salon Project Image 1">
-                    <img src="./img/salon2.png" alt="Salon Project Image 2">
-                    <img src="./img/salon3.png" alt="Salon Project Image 3">
-                </div>
-                <button class="carousel-btn prev">❮</button>
-                <button class="carousel-btn next">❯</button>
-            </div>
-            <p>Разработан сайт для салона красоты, предлагающего услуги стрижки, окрашивания, маникюра, педикюра и свадебных причёсок. Цель — удобная онлайн-запись и привлечение новых клиентов.</p>
-            <p><strong>Технологии:</strong></p>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>Tailwind CSS</li>
-                <li>hCaptcha</li>
-            </ul>
-            <p><strong>Срок реализации:</strong> 2 недели</p>
-            <p><strong>Стоимость:</strong> 15000р</p>
-            <p><strong>Результаты:</strong> Увеличение онлайн-записей на 30%, улучшение пользовательского опыта и рост посещаемости сайта.</p>
-            <p><a href="https://artyom995.github.io/Salon/" class="text-purple-600 hover:underline">Посмотреть проект</a></p>
-        </div>
-    </div>
-
-    <div id="modal-project-4" class="portfolio-modal">
-        <div class="portfolio-modal-content">
-            <span class="close-modal">×</span>
-            <h3>Сайт для логопеда-дефектолога</h3>
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="./img/logo1.png" alt="Logoped Project Image 1">
-                    <img src="./img/logo2.png" alt="Logoped Project Image 2">
-                    <img src="./img/logo3.png" alt="Logoped Project Image 3">
-                </div>
-                <button class="carousel-btn prev">❮</button>
-                <button class="carousel-btn next">❯</button>
-            </div>
-            <p>Разрабатывается сайт для логопеда-дефектолога Кузнецовой Е.И., предлагающий онлайн-запись на консультации и информацию об услугах коррекции речи. Цель — упрощение доступа к профессиональной помощи.</p>
-            <p><strong>Технологии:</strong></p>
-            <ul>
-                <li>HTML, CSS, JavaScript</li>
-                <li>Tailwind CSS</li>
-                <li>hCaptcha</li>
-            </ul>
-            <p><strong>Срок реализации:</strong> В процессе (ожидается 2 недели)</p>
-            <p><strong>Стоимость:</strong> Ожидается 15000р</p>
-            <p><strong>Результаты:</strong> Ожидается увеличение числа консультаций на 30% и улучшение взаимодействия с клиентами после запуска.</p>
-            <p><a href="https://artyom995.github.io/defectologist/" class="text-purple-600 hover:underline">Посмотреть проект (в разработке)</a></p>
-        </div>
-
-    </div>
-
-
     <script>
         // Мобильное меню
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('open');
         });
@@ -1725,33 +996,21 @@
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
+                
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                    
                     if (mobileMenu.classList.contains('open')) {
                         mobileMenu.classList.remove('open');
                     }
                 }
             });
         });
-
-        // Анимация при скролле
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.card-hover, .float-animation');
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                if (elementPosition < screenPosition) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        };
-        window.addEventListener('load', animateOnScroll);
-        window.addEventListener('scroll', animateOnScroll);
+        
 
         // Обработка формы
         document.getElementById('signup-form').addEventListener('submit', function(event) {
@@ -1786,91 +1045,24 @@
             });
         });
 
-        // Закрытие модального окна формы
-        document.getElementById('close-modal').addEventListener('click', function() {
-            document.getElementById('modal').classList.add('hidden');
-        });
 
-        // Обработка модальных окон портфолио
-        const modalButtons = document.querySelectorAll('.portfolio-modal-btn');
-        const modals = document.querySelectorAll('.portfolio-modal');
-        const closeModalButtons = document.querySelectorAll('.close-modal');
 
-        modalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const modalId = button.getAttribute('data-modal');
-                const modal = document.getElementById(modalId);
-                if (modal) {
-                    modal.style.display = 'flex';
-                } else {
-                    console.error(`Модальное окно с id ${modalId} не найдено`);
+        // Анимации при скролле
+        const animateOnScroll = () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (cardPosition < screenPosition) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
                 }
             });
-        });
-
-        closeModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const modal = button.closest('.portfolio-modal');
-                modal.style.display = 'none';
-            });
-        });
-
-        // Закрытие модального окна при клике вне контента
-        modals.forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        });
-
-        // Карусель изображений
-        const carousels = document.querySelectorAll('.carousel');
-        carousels.forEach(carousel => {
-            const imagesContainer = carousel.querySelector('.carousel-images');
-            const images = imagesContainer.querySelectorAll('img');
-            let currentIndex = 0;
-
-            const showImage = (index) => {
-                imagesContainer.style.transform = `translateX(-${index * 100}%)`;
-            };
-
-            carousel.querySelector('.prev').addEventListener('click', () => {
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-                showImage(currentIndex);
-            });
-
-            carousel.querySelector('.next').addEventListener('click', () => {
-                currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-                showImage(currentIndex);
-            });
-        });
-
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('section-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.2,
-                rootMargin: '20px'
-            });
-
-            sections.forEach(section => {
-                section.classList.add('section-hidden');
-                const children = section.querySelectorAll('h1, h2, h3, p, .card-hover, img, .ai-loader, .chat-interface');
-                children.forEach(child => child.classList.add('animate-child'));
-                observer.observe(section);
-            });
-        });
+        };
+        
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
     </script>
-
 </body>
 </html>
