@@ -130,6 +130,10 @@
                 overflow-y: auto; /* Добавляем прокрутку при необходимости */
             }
         }
+        /* обработка формы */
+        #form-notification {
+            transition: opacity 0.3s ease-in-out;
+        }
                     
     </style>
     <script src="https://www.google.com/recaptcha/api.js?render=6Lcqb1orAAAAADar8bV0KX5UEjTQluGarQmDqriS"></script>
@@ -1013,6 +1017,7 @@
         </div>
     </footer>
 
+
     <script>
         // Мобильное меню
         const menuBtn = document.getElementById('menu-btn');
@@ -1043,42 +1048,6 @@
             });
         });
         
-
-        // Обработка формы
-        document.getElementById('signup-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const form = event.target;
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6Lcqb1orAAAAADar8bV0KX5UEjTQluGarQmDqriS', {action: 'submit'}).then(function(token) {
-                    form.querySelector('#recaptcha-token').value = token;
-                    const data = {
-                        name: form.querySelector('#name').value,
-                        siteType: form.querySelector('#site-type').value,
-                        phone: form.querySelector('#phone').value,
-                        message: form.querySelector('#message').value,
-                        agree: form.querySelector('#consent').checked,
-                        'recaptcha-token': token
-                    };
-                    fetch('https://script.google.com/macros/s/AKfycbxJZshCO_DLpIIzl2bcNeKvRvmwN3MG-fRoaWSLtvLMrqul5wpWf7ZOvVIuYBEik7Ss/exec', {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data)
-                    }).then(() => {
-                        document.getElementById('modal').classList.remove('hidden');
-                        form.reset();
-                    }).catch(error => {
-                        console.error('Ошибка:', error);
-                        alert('Ошибка при отправке');
-                    });
-                });
-            });
-        });
-
-
-
         // Анимации при скролле
         const animateOnScroll = () => {
             const cards = document.querySelectorAll('.card');
@@ -1095,6 +1064,8 @@
         
         window.addEventListener('load', animateOnScroll);
         window.addEventListener('scroll', animateOnScroll);
+
     </script>
+    <script src="./form-submit.js"></script>
 </body>
 </html>
