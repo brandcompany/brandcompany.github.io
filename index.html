@@ -20,11 +20,14 @@
     <meta name="twitter:description" content="Создаю уникальные сайты с нуля: дизайн, адаптация, кроссбраузерность, защита от спама и помощь нейро-сотрудников. Ваш идеальный сайт начинается здесь!">
     <meta name="twitter:image" content="https://brand-company.ru/path/to/your/key-image.jpg">
         <!-- Favicon -->
-
     <link rel="icon" href="./img/favi.png" type="image/png" sizes="32x32">
+
     <!-- Existing scripts and styles -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Tailwind CSS (assuming it's not already included) -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
+
         <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -201,36 +204,40 @@
         </div>
     </section>
 
-    <section class="py-20 bg-gradient-light">
+    <section class="py-20 bg-gradient-light" id="approach">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <p class="text-sm font-semibold text-indigo-600 mb-2">НАШ ПОДХОД</p>
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Как мы создаем ваши проекты</h2>
-                <div class="w-16 h-0.5 bg-gradient-to-r fromtriad from-indigo-500 to-purple-500 mx-auto"></div>
+                <div class="w-16 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto"></div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="card p-6 text-center">
+                <!-- Шаг 1 -->
+                <div class="card p-6 text-center" style="opacity: 1; transform: translateY(0px);">
                     <div class="feature-icon mx-auto">
                         <i class="fas fa-search"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gradient mb-2">1. Исследование</h3>
                     <p class="text-gray-600">Анализируем ваши цели, аудиторию и рынок, чтобы заложить основу проекта.</p>
                 </div>
-                <div class="card p-6 text-center">
+                <!-- Шаг 2 -->
+                <div class="card p-6 text-center" style="opacity: 1; transform: translateY(0px);">
                     <div class="feature-icon mx-auto">
                         <i class="fas fa-paint-brush"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gradient mb-2">2. Дизайн</h3>
                     <p class="text-gray-600">Создаем интуитивные и стильные интерфейсы для лучшего пользовательского опыта.</p>
                 </div>
-                <div class="card p-6 text-center">
+                <!-- Шаг 3 -->
+                <div class="card p-6 text-center mobile-hidden" style="opacity: 1; transform: translateY(0px);" data-hidden-mobile>
                     <div class="feature-icon mx-auto">
                         <i class="fas fa-code"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gradient mb-2">3. Разработка</h3>
                     <p class="text-gray-600">Кодируем надежные и быстрые веб-решения с современными технологиями.</p>
                 </div>
-                <div class="card p-6 text-center">
+                <!-- Шаг 4 -->
+                <div class="card p-6 text-center mobile-hidden" style="opacity: 1; transform: translateY(0px);" data-hidden-mobile>
                     <div class="feature-icon mx-auto">
                         <i class="fas fa-rocket"></i>
                     </div>
@@ -238,8 +245,52 @@
                     <p class="text-gray-600">Тестируем и запускаем проект, обеспечивая его стабильность и успех.</p>
                 </div>
             </div>
+            <!-- Show More Button -->
+            <div class="text-center mt-8 mobile-only">
+                <button id="show-more-btn-approach" class="btn-primary inline-block">Показать еще</button>
+            </div>
         </div>
     </section>
+
+    <style>
+    /* Скрываем шаги 3–4 и показываем кнопку на экранах меньше 768px */
+    @media (max-width: 767px) {
+        .mobile-hidden {
+            display: none;
+        }
+        .mobile-only {
+            display: block;
+        }
+    }
+
+    /* Показываем все шаги и скрываем кнопку на экранах 768px и больше */
+    @media (min-width: 768px) {
+        .mobile-hidden {
+            display: block;
+        }
+        .mobile-only {
+            display: none;
+        }
+    }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const showMoreBtn = document.getElementById('show-more-btn-approach');
+        if (showMoreBtn) {
+            showMoreBtn.addEventListener('click', function() {
+                const hiddenCards = document.querySelectorAll('#approach [data-hidden-mobile]');
+                const isHidden = hiddenCards[0].classList.contains('mobile-hidden');
+                
+                hiddenCards.forEach(card => {
+                    card.classList.toggle('mobile-hidden', !isHidden);
+                });
+                
+                this.textContent = isHidden ? 'Скрыть' : 'Показать еще';
+            });
+        }
+    });
+    </script>
 
     <!-- Услуги -->
     <section class="py-20" id="services">
@@ -251,7 +302,7 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Услуга 1 -->
-                <div class="card p-8">
+                <div class="card p-8" style="opacity: 1; transform: translateY(0px);">
                     <div class="feature-icon">
                         <i class="fas fa-search"></i>
                     </div>
@@ -260,7 +311,7 @@
                 </div>
                 
                 <!-- Услуга 2 -->
-                <div class="card p-8">
+                <div class="card p-8" style="opacity: 1; transform: translateY(0px);">
                     <div class="feature-icon">
                         <i class="fas fa-lock"></i>
                     </div>
@@ -269,7 +320,7 @@
                 </div>
                 
                 <!-- Услуга 3 -->
-                <div class="card p-8">
+                <div class="card p-8" style="opacity: 1; transform: translateY(0px);">
                     <div class="feature-icon">
                         <i class="fab fa-telegram"></i>
                     </div>
@@ -278,7 +329,7 @@
                 </div>
                 
                 <!-- Услуга 4 -->
-                <div class="card p-8">
+                <div class="card p-8 mobile-hidden" style="opacity: 1; transform: translateY(0px);" data-hidden-mobile>
                     <div class="feature-icon">
                         <i class="fas fa-code"></i>
                     </div>
@@ -287,7 +338,7 @@
                 </div>
                 
                 <!-- Услуга 5 -->
-                <div class="card p-8">
+                <div class="card p-8 mobile-hidden" style="opacity: 1; transform: translateY(0px);" data-hidden-mobile>
                     <div class="feature-icon">
                         <i class="fas fa-paint-brush"></i>
                     </div>
@@ -296,7 +347,7 @@
                 </div>
                 
                 <!-- Услуга 6 -->
-                <div class="card p-8">
+                <div class="card p-8 mobile-hidden" style="opacity: 1; transform: translateY(0px);" data-hidden-mobile>
                     <div class="feature-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
@@ -304,8 +355,54 @@
                     <p class="text-gray-600">Ускоряем загрузку вашего сайта, улучшая пользовательский опыт и SEO-показатели.</p>
                 </div>
             </div>
+            <!-- Show More Button -->
+            <div class="text-center mt-8 mobile-only">
+                <button id="show-more-btn" class="btn-primary inline-block">Показать еще</button>
+            </div>
         </div>
     </section>
+
+    <style>
+    /* Скрываем карточки 4–6 и кнопку на экранах меньше 768px */
+    @media (max-width: 767px) {
+        .mobile-hidden {
+            display: none;
+        }
+        .mobile-only {
+            display: block;
+        }
+    }
+
+    /* Показываем все карточки и скрываем кнопку на экранах 768px и больше */
+    @media (min-width: 768px) {
+        .mobile-hidden {
+            display: block;
+        }
+        .mobile-only {
+            display: none;
+        }
+    }
+    </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const showMoreBtn = document.getElementById('show-more-btn');
+        if (showMoreBtn) {
+            showMoreBtn.addEventListener('click', function() {
+                const hiddenCards = document.querySelectorAll('[data-hidden-mobile]');
+                const isHidden = hiddenCards[0].classList.contains('mobile-hidden');
+                
+                hiddenCards.forEach(card => {
+                    card.classList.toggle('mobile-hidden', !isHidden);
+                });
+                
+                this.textContent = isHidden ? 'Скрыть' : 'Показать еще';
+            });
+        }
+    });
+    </script>
+
+
 
     <!-- Секция нейросотрудников (оставляем без изменений) -->
     <section class="py-12 md:py-20 bg-white" id="ai-team">
@@ -732,9 +829,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <p class="text-xs md:text-sm text-white/80 mt-3 text-center animate-pulse">
-                    <i class="fas fa-exclamation-triangle mr-1"></i> Успейте оставить заявку, предложение ограничено!
-                </p> -->
             </div>
             <!-- Contact and Form -->
             <div class="grid lg:grid-cols-2 gap-8">
@@ -816,28 +910,25 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            let endDate;
-            const storedEndDate = localStorage.getItem('countdownEndDate');
-            const now = new Date();
-
-            if (storedEndDate) {
-                endDate = new Date(storedEndDate);
-                if (endDate <= now) {
-                    endDate = new Date(now.getTime() + 2.5 * 24 * 60 * 60 * 1000);
-                    localStorage.setItem('countdownEndDate', endDate.toISOString());
-                }
-            } else {
-                endDate = new Date(now.getTime() + 2.5 * 24 * 60 * 60 * 1000);
-                localStorage.setItem('countdownEndDate', endDate.toISOString());
-            }
+            // Устанавливаем фиксированную дату окончания акции (например, 2.5 дня от текущего момента)
+            // Для примера зададим дату окончания: 16 июня 2025, 23:59:59 по местному времени
+            const endDate = new Date('2025-06-15T23:59:59');
 
             function updateCountdown() {
                 const now = new Date();
                 let diff = endDate - now;
 
                 if (diff <= 0) {
+                    // Если время акции истекло, можно либо остановить таймер, либо задать новую дату
+                    // Вариант 1: Остановить таймер и показать 00:00:00:00
+                    // document.getElementById('days').textContent = '00';
+                    // document.getElementById('hours').textContent = '00';
+                    // document.getElementById('minutes').textContent = '00';
+                    // document.getElementById('seconds').textContent = '00';
+                    // return; // Прекращаем обновление таймера
+
+                    // Вариант 2 (если нужно продлить акцию):
                     endDate = new Date(now.getTime() + 2.5 * 24 * 60 * 60 * 1000);
-                    localStorage.setItem('countdownEndDate', endDate.toISOString());
                     diff = endDate - now;
                 }
 
