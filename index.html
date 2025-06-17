@@ -910,25 +910,27 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Устанавливаем фиксированную дату окончания акции (например, 2.5 дня от текущего момента)
-            // Для примера зададим дату окончания: 16 июня 2025, 23:59:59 по местному времени
-            const endDate = new Date('2025-06-15T23:59:59');
+            // Функция для получения текущей даты окончания акции
+            function getEndDate() {
+                const now = new Date();
+                // Берем фиксированную базу для старта (например, 17 июня 2025, 23:59:59 UTC)
+                const baseDate = new Date('2025-06-17T23:59:59.999Z');
+                // Вычисляем, сколько 2-дневных периодов прошло с базовой даты
+                const cycleDuration = 2 * 24 * 60 * 60 * 1000; // 2 дня в миллисекундах
+                const cyclesPassed = Math.floor((now - baseDate) / cycleDuration);
+                // Устанавливаем дату окончания как базовая дата + (кол-во циклов * 2 дня)
+                return new Date(baseDate.getTime() + cyclesPassed * cycleDuration + cycleDuration);
+            }
+
+            let endDate = getEndDate();
 
             function updateCountdown() {
                 const now = new Date();
                 let diff = endDate - now;
 
                 if (diff <= 0) {
-                    // Если время акции истекло, можно либо остановить таймер, либо задать новую дату
-                    // Вариант 1: Остановить таймер и показать 00:00:00:00
-                    // document.getElementById('days').textContent = '00';
-                    // document.getElementById('hours').textContent = '00';
-                    // document.getElementById('minutes').textContent = '00';
-                    // document.getElementById('seconds').textContent = '00';
-                    // return; // Прекращаем обновление таймера
-
-                    // Вариант 2 (если нужно продлить акцию):
-                    endDate = new Date(now.getTime() + 2.5 * 24 * 60 * 60 * 1000);
+                    // Если время акции истекло, обновляем дату окончания на следующий 2-дневный цикл
+                    endDate = getEndDate();
                     diff = endDate - now;
                 }
 

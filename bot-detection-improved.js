@@ -33,7 +33,7 @@
   // Функция для отправки данных
   function reportBot() {
     const timeSpent = (Date.now() - startTime) / 1000;
-    const isBotDetected = (isBotAgent && !isBrowser) || !supportsJS || (timeSpent < 10 && !hasInteraction);
+    const isBotDetected = (isBotAgent && !isBrowser) || !supportsJS || (timeSpent < 5 && !hasInteraction);
 
     if (isBotDetected) {
       console.log('Bot detected, sending report:', {
